@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Progress</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        /* Define new color variables based on the image */
+        :root {
+            --color-primary-accent: #A3CC3A; /* Bright Green/Lime (Success/Active) */
+            --color-secondary-accent: #FF8A00; /* Orange/Saffron (Performance/Progress) */
+            --color-sidebar-bg: #334756; /* Dark Gray-Green - UPDATED */
+            --color-dark-text: #2c3e50;
+            --color-light-bg: #f4f7f6;
+        }
+
+        /* --- GLOBAL & BASE STYLES --- */
+        body { font-family: sans-serif; margin: 0; background-color: var(--color-light-bg); display: flex; }
+        .sidebar { 
+            width: 250px; 
+            background: var(--color-sidebar-bg); /* APPLIED COLOR CHANGE */
+            color: white; 
+            height: 100vh; 
+            padding: 20px 0; 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
+        }
+        .logo { text-align: center; font-size: 1.5em; font-weight: bold; margin-bottom: 30px; }
+        .nav-menu { padding: 0 15px; }
+        .nav-item { display: flex; align-items: center; padding: 12px 15px; margin-bottom: 8px; border-radius: 8px; text-decoration: none; color: #ecf0f1; transition: background 0.2s; }
+        .nav-item:hover { background: #2c3e50; }
+        .nav-item.active { 
+            background: var(--color-primary-accent); /* APPLIED COLOR CHANGE: Active item background */
+            color: white; 
+            font-weight: bold; 
+        }
+        .nav-item span:first-child { margin-right: 10px; }
+        .logout-btn { background: #e74c3c; color: white; border: none; padding: 10px; border-radius: 8px; width: 80%; margin: 20px auto 0; display: block; cursor: pointer; }
+
+        .main-content { flex-grow: 1; padding: 30px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .header h1 { color: var(--color-dark-text); }
+        .primary-btn { 
+            background: var(--color-secondary-accent); 
+            color: white; border: none; padding: 10px 20px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: background 0.2s; 
+        }
+        .primary-btn:hover { background: #e07a00; } 
+
+        /* --- PROGRESS DASHBOARD STYLES --- */
+        .progress-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .chart-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            min-height: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .chart-card h3 {
+            color: var(--color-dark-text);
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+        }
+        .stat-highlight {
+            text-align: center;
+            padding: 15px;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .stat-highlight .value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: var(--color-primary-accent); 
+        }
+        .stat-highlight .label {
+            color: #7f8c8d;
+        }
+        .section-header {
+            font-size: 1.5em;
+            color: var(--color-dark-text);
+            margin-top: 40px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--color-primary-accent); 
+        }
+        .benchmark-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .benchmark-card {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        .benchmark-card .metric {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--color-secondary-accent); 
+            display: block;
+            margin-bottom: 5px;
+        }
+        .benchmark-card .sub-label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        /* --- PHOTO CARD STYLES --- */
+        .photo-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; align-items: center; position: relative; }
+        .photo-card h3 { border-radius: 12px 12px 0 0; padding: 20px; }
+        .photo-card .photo-preview { width: 90%; height: 200px; object-fit: contain; border-radius: 8px; cursor: pointer; margin: 10px 0; border: 1px solid #ccc; }
+        .photo-card .photo-actions { display: flex; justify-content: center; gap: 10px; padding: 15px; width: 100%; box-sizing: border-box; background: rgba(255, 255, 255, 0.9); border-top: 1px solid #eee; border-radius: 0 0 12px 12px; }
+        .photo-card .photo-actions button { background-color: var(--color-primary-accent); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-size: 0.9em; transition: background-color 0.2s; }
+        .photo-card .photo-actions button:hover { background-color: #92b734; }
+        .photo-card .photo-actions #uploadPhotoInput { display: none; }
+        
+        /* --- MODAL STYLES (Adjusted colors) --- */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); padding-top: 60px; }
+        .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border-radius: 12px; width: 80%; max-width: 600px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .close-btn { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .close-btn:hover, .close-btn:focus { color: #000; text-decoration: none; cursor: pointer; }
+        .form-group label { display: block; margin-top: 15px; font-weight: bold; }
+        .form-group input, .form-group select { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        .modal-content button { margin-top: 20px; }
+
+        #photoGalleryModal { padding-top: 0; display: flex; align-items: center; justify-content: center; }
+        #photoGalleryModal .modal-content { width: 90%; max-width: 1000px; height: 90vh; display: flex; flex-direction: column; padding: 25px; }
+        #photoGalleryModal h2 { margin-top: 0; color: var(--color-dark-text); padding-bottom: 10px; border-bottom: 1px solid #eee; flex-shrink: 0; }
+        .gallery-container { display: flex; flex-grow: 1; gap: 15px; margin-top: 20px; overflow: hidden; }
+        .thumbnail-sidebar { width: 120px; overflow-y: auto; border-right: 1px solid #eee; padding-right: 10px; flex-shrink: 0; }
+        .thumbnail-sidebar img { width: 100%; height: 80px; object-fit: cover; border-radius: 5px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; }
+        .thumbnail-sidebar img:hover { border-color: var(--color-secondary-accent); } 
+        .thumbnail-sidebar img.selected { border-color: var(--color-primary-accent); } 
+        .main-photo-view { flex-grow: 1; display: flex; justify-content: space-around; align-items: center; gap: 15px; overflow: hidden; }
+        .main-photo-view .photo-display { flex: 1; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #f0f3f6; border-radius: 8px; overflow: hidden; }
+        .main-photo-view .photo-display img { max-width: 100%; max-height: 80%; object-fit: contain; cursor: pointer; }
+        .main-photo-view .photo-label { margin-top: 10px; font-weight: bold; color: #555; flex-shrink: 0; }
+        .no-photos { color: #7f8c8d; font-style: italic; text-align: center; margin-top: 50px; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo"> <span class="logo-icon">🍊</span> <span class="logo-text">Nutrigo</span> </div>
+        <nav class="nav-menu">
+            <a href="new.html" class="nav-item"> <span>📊</span> <span>Dashboard</span> </a>
+            <a href="profile.html" class="nav-item"> <span>👤</span> <span>Profile</span> </a>
+            <a href="calendar.html" class="nav-item"> <span>📅</span> <span>Calendar</span> </a>
+            <a href="massage.html" class="nav-item"> <span>💬</span> <span>Messages</span> <span class="badge">8</span> </a>
+            <a href="heldiymenue.html" class="nav-item"> <span>🍽️</span> <span>Healthy Menu</span> </a>
+            <a href="mealplane.html" class="nav-item"> <span>📋</span> <span>Meal Plan</span> </a>
+            <a href="fooddilevry.html" class="nav-item"> <span>📖</span> <span>Food Diary</span> </a>
+            <a href="profile.js" class="nav-item active"> <span>📈</span> <span>Progress</span> </a>
+            <a href="Exercises.html" class="nav-item"> <span>💪</span> <span>Exercises</span> </a>
+            <a href="health.html" class="nav-item"> <span>💡</span> <span>Health Insights</span> </a>
+        </nav>
+        <button class="logout-btn"> <span>🚪</span> <span>Logout</span> </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>📈 Holistic Progress Tracking</h1>
+                <p>Visualize your success across **performance, body composition, and lifestyle** metrics.</p>
+            </div>
+            <button class="primary-btn" id="logProgressBtn">➕ Log New Progress</button>
+        </header>
+
+        <div class="stat-highlight">
+            <div class="value" id="weightLossValue">-7.2<span class="text-xl ml-2">kg</span></div>
+            <div class="label" id="goalStatusLabel">Weight Lost (Goal: -10kg) - **72% Complete!**</div>
+        </div>
+
+        <h2 class="section-header">💪 Strength & Activity Benchmarks</h2>
+        
+        <div class="benchmark-grid">
+            <div class="benchmark-card">
+                <span class="metric" id="bench1RM">120<span style="font-size: 0.6em;">kg</span></span>
+                <span class="sub-label">Current 1RM Bench Press</span>
+            </div>
+            <div class="benchmark-card">
+                <span class="metric" id="weeklyVolume">5,400<span style="font-size: 0.6em;">kg</span></span>
+                <span class="sub-label">Avg. Weekly Lifting Volume</span>
+            </div>
+            <div class="benchmark-card">
+                <span class="metric" id="pace5K">4:35<span style="font-size: 0.6em;">/km</span></span>
+                <span class="sub-label">Best 5K Running Pace</span>
+            </div>
+        </div>
+
+        <div class="progress-grid">
+            <div class="chart-card">
+                <h3>Total Strength Volume Trend</h3>
+                <canvas id="strengthVolumeChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Key Exercise Progression (Squat vs. Bench 1RM)</h3>
+                <canvas id="oneRMChart"></canvas>
+            </div>
+        </div>
+        
+        <h2 class="section-header">📏 Body & Lifestyle Metrics</h2>
+
+        <div class="progress-grid">
+            <div class="chart-card photo-card">
+                <h3>Progress Photos</h3>
+                <img src="https://via.placeholder.com/300x200/cccccc/ffffff?text=Latest+Photo" alt="Latest Progress Photo" class="photo-preview" id="latestPhotoPreview">
+                <div class="photo-actions">
+                    <button id="viewGalleryBtn">View Comparison Gallery</button>
+                    <input type="file" id="uploadPhotoInput" accept="image/*">
+                    <button id="triggerUploadBtn">Upload New Photo</button>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Body Measurements (Waist Trend)</h3>
+                <canvas id="waistTrendChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Weight & Body Fat % Trend</h3>
+                <canvas id="weightBodyFatChart"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3>Sleep & Energy Quality (30 Days)</h3>
+                <canvas id="sleepEnergyChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <div id="logModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>➕ Log Your Progress</h2>
+            <form id="progressForm">
+                <div class="form-group">
+                    <label for="newWeight">Current Weight (kg):</label>
+                    <input type="number" id="newWeight" name="newWeight" step="0.1" required>
+                </div>
+                <div class="form-group">
+                    <label for="waist">Waist Measurement (cm):</label>
+                    <input type="number" id="waist" name="waist" step="0.1">
+                </div>
+                <div class="form-group">
+                    <label for="sleep">Sleep Quality (1-5):</label>
+                    <input type="number" id="sleep" name="sleep" min="1" max="5">
+                </div>
+                <div class="form-group">
+                    <label for="workout">Last Bench Press (e.g., 100kg x 5 reps):</label>
+                    <input type="text" id="workout" name="workout" placeholder="Weight (kg) x Reps">
+                </div>
+                <button type="submit" class="primary-btn">Save Progress</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="photoGalleryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn photo-gallery-close-btn">&times;</span>
+            <h2>📸 Progress Photo Gallery</h2>
+            <div class="gallery-container">
+                <div class="thumbnail-sidebar" id="thumbnailSidebar">
+                    <div class="no-photos" id="noPhotosMessage" style="display: none;">No photos yet.</div>
+                </div>
+                <div class="main-photo-view">
+                    <div class="photo-display">
+                        <img id="photoLeft" src="https://via.placeholder.com/400x300/e0e0e0/000000?text=Select+Start" alt="Comparison Photo 1">
+                        <div class="photo-label" id="photoLeftLabel">Select START Photo</div>
+                    </div>
+                    <div class="photo-display">
+                        <img id="photoRight" src="https://via.placeholder.com/400x300/d0d0d0/000000?text=Select+End" alt="Comparison Photo 2">
+                        <div class="photo-label" id="photoRightLabel">Select END Photo</div>
+                    </div>
+                </div>
+            </div>
+            <button class="primary-btn" style="align-self: flex-end;" id="uploadPhotoInGalleryBtn">Upload New Photo</button>
+            <input type="file" id="uploadPhotoInputGallery" accept="image/*" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- COLOR DEFINITIONS FOR CHART.JS (Mirroring CSS variables) ---
+            const PRIMARY_ACCENT = '#A3CC3A'; 
+            const SECONDARY_ACCENT = '#FF8A00'; 
+            const DARK_TEXT = '#34495e';
+
+            // --- 1. SAMPLE DATA SIMULATION (REPLACE WITH BACKEND FETCH) ---
+            const data = {
+                dates: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                weight: [85.0, 83.5, 82.8, 81.0, 79.5, 77.8], 
+                bodyFat: [25.0, 24.5, 24.0, 23.0, 22.0, 20.9],
+                squat1RM: [140, 145, 150, 155, 160, 165],
+                bench1RM: [100, 105, 110, 115, 120, 125],
+                volume: [4500, 5000, 5200, 5300, 5400, 5500],
+                waist: [90, 88, 86, 84, 82, 80.5],
+                sleepEnergy: [3, 4, 3, 5, 4, 4], 
+            };
+
+            const initialWeight = 85.0;
+            const goalWeight = 75.0;
+            const currentWeight = data.weight[data.weight.length - 1];
+            
+            // --- 2. DYNAMICALLY UPDATE STATS ---
+            function updateGoalStats() {
+                const loss = (initialWeight - currentWeight).toFixed(1);
+                const progress = (((initialWeight - currentWeight) / (initialWeight - goalWeight)) * 100).toFixed(0);
+
+                document.getElementById('weightLossValue').innerHTML = `-${loss}<span style="font-size: 0.6em; margin-left: 5px;">kg</span>`;
+                document.getElementById('goalStatusLabel').innerHTML = `Weight Lost (Goal: ${goalWeight}kg) - **${progress}% Complete!**`;
+            }
+
+            // --- 3. 1RM CALCULATION (EPLEY FORMULA) ---
+            function calculate1RM(weight, reps) {
+                if (reps === 1) return weight;
+                if (typeof reps !== 'number' || isNaN(reps) || reps <= 0) return weight; 
+                return weight * (1 + reps / 30);
+            }
+
+            const lastBenchWeight = 105;
+            const lastBenchReps = 8;
+            const calculated1RM = calculate1RM(lastBenchWeight, lastBenchReps).toFixed(0);
+            document.getElementById('bench1RM').innerHTML = `${calculated1RM}<span style="font-size: 0.6em; margin-left: 5px;">kg</span>`;
+            
+            // --- 4. CHART RENDERING FUNCTIONS ---
+            function createLineChart(ctxId, labels, dataSets, title) {
+                const ctx = document.getElementById(ctxId).getContext('2d');
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: dataSets
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            legend: { position: 'top' },
+                            title: { display: false, text: title }
+                        },
+                        scales: {
+                            y: { beginAtZero: false }
+                        }
+                    }
+                });
+            }
+
+            // Chart 1: Total Strength Volume Trend
+            createLineChart('strengthVolumeChart', data.dates, [{
+                label: 'Weekly Volume (kg)',
+                data: data.volume,
+                borderColor: SECONDARY_ACCENT, 
+                backgroundColor: SECONDARY_ACCENT.replace('00', '40'),
+                tension: 0.3
+            }], 'Total Strength Volume Trend');
+
+            // Chart 2: Key Exercise Progression (1RM)
+            createLineChart('oneRMChart', data.dates, [
+                {
+                    label: 'Squat 1RM (kg)',
+                    data: data.squat1RM,
+                    borderColor: SECONDARY_ACCENT, 
+                    tension: 0.3
+                },
+                {
+                    label: 'Bench 1RM (kg)',
+                    data: data.bench1RM,
+                    borderColor: PRIMARY_ACCENT, 
+                    tension: 0.3
+                }
+            ], 'Key Exercise Progression');
+
+            // Chart 3: Waist Trend
+            createLineChart('waistTrendChart', data.dates, [{
+                label: 'Waist (cm)',
+                data: data.waist,
+                borderColor: '#e74c3c', 
+                tension: 0.3
+            }], 'Body Measurements (Waist Trend)');
+            
+            // Chart 4: Weight & Body Fat % Trend (Dual Axis Example)
+            const ctxWeightFat = document.getElementById('weightBodyFatChart').getContext('2d');
+            new Chart(ctxWeightFat, {
+                type: 'line',
+                data: {
+                    labels: data.dates,
+                    datasets: [
+                        {
+                            label: 'Weight (kg)',
+                            data: data.weight,
+                            borderColor: DARK_TEXT, 
+                            yAxisID: 'y',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Body Fat (%)',
+                            data: data.bodyFat,
+                            borderColor: SECONDARY_ACCENT, 
+                            yAxisID: 'y1',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    interaction: { mode: 'index', intersect: false },
+                    scales: {
+                        y: { type: 'linear', display: true, position: 'left', beginAtZero: false },
+                        y1: { type: 'linear', display: true, position: 'right', grid: { drawOnChartArea: false }, beginAtZero: false }
+                    }
+                }
+            });
+
+            // Chart 5: Sleep & Energy Quality (Bar Chart)
+            const ctxSleep = document.getElementById('sleepEnergyChart').getContext('2d');
+            new Chart(ctxSleep, {
+                type: 'bar',
+                data: {
+                    labels: data.dates,
+                    datasets: [{
+                        label: 'Avg. Sleep/Energy Rating (1-5)',
+                        data: data.sleepEnergy,
+                        backgroundColor: PRIMARY_ACCENT, 
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: { y: { beginAtZero: true, max: 5 } }
+                }
+            });
+
+
+            // --- 5. GENERAL PROGRESS LOGGING MODAL INTERACTIVITY ---
+            const logModal = document.getElementById("logModal");
+            const logProgressBtn = document.getElementById("logProgressBtn");
+            const logModalCloseBtn = logModal.getElementsByClassName("close-btn")[0];
+            const progressForm = document.getElementById("progressForm");
+            
+            logProgressBtn.onclick = () => { logModal.style.display = "block"; };
+            logModalCloseBtn.onclick = () => { logModal.style.display = "none"; };
+
+            progressForm.onsubmit = (e) => {
+                e.preventDefault();
+                alert("Progress saved! Data would now be sent to the backend and the dashboard charts would refresh.");
+                logModal.style.display = "none";
+                progressForm.reset();
+            };
+
+            // --- 6. PHOTO GALLERY MODAL INTERACTIVITY ---
+            const photoGalleryModal = document.getElementById("photoGalleryModal");
+            const viewGalleryBtn = document.getElementById("viewGalleryBtn");
+            const photoGalleryCloseBtn = document.getElementsByClassName("photo-gallery-close-btn")[0];
+            const uploadPhotoInput = document.getElementById("uploadPhotoInput");
+            const triggerUploadBtn = document.getElementById("triggerUploadBtn");
+            const uploadPhotoInputGallery = document.getElementById("uploadPhotoInputGallery");
+            const uploadPhotoInGalleryBtn = document.getElementById("uploadPhotoInGalleryBtn");
+            const latestPhotoPreview = document.getElementById("latestPhotoPreview");
+            const thumbnailSidebar = document.getElementById("thumbnailSidebar");
+            const noPhotosMessage = document.getElementById("noPhotosMessage");
+            const photoLeft = document.getElementById("photoLeft");
+            const photoRight = document.getElementById("photoRight");
+            const photoLeftLabel = document.getElementById("photoLeftLabel");
+            const photoRightLabel = document.getElementById("photoRightLabel");
+
+            // Dummy photo data (replace with actual backend data)
+            let userPhotos = [
+                { id: 1, src: "https://via.placeholder.com/400x300/ADD8E6/000000?text=Jan+2024", date: "Jan 1, 2024" },
+                { id: 2, src: "https://via.placeholder.com/400x300/FFDAB9/000000?text=Mar+2024", date: "Mar 1, 2024" },
+                { id: 3, src: "https://via.placeholder.com/400x300/90EE90/000000?text=May+2024", date: "May 1, 2024" }
+            ];
+
+            let selectedPhotoLeft = null;
+            let selectedPhotoRight = null;
+
+            // Click listener for the main view and gallery upload
+            triggerUploadBtn.onclick = () => uploadPhotoInput.click();
+            uploadPhotoInGalleryBtn.onclick = () => uploadPhotoInputGallery.click();
+            
+            // Handle photo selection (simulated upload)
+            function handlePhotoUpload(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const newPhoto = {
+                            id: Date.now(),
+                            src: e.target.result,
+                            date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+                        };
+                        userPhotos.push(newPhoto);
+                        latestPhotoPreview.src = newPhoto.src;
+                        alert("New photo uploaded and saved!");
+                        renderThumbnails();
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            uploadPhotoInput.addEventListener('change', handlePhotoUpload);
+            uploadPhotoInputGallery.addEventListener('change', handlePhotoUpload);
+
+            function renderThumbnails() {
+                thumbnailSidebar.innerHTML = ''; // Clear existing
+                if (userPhotos.length === 0) {
+                    noPhotosMessage.style.display = 'block';
+                    photoLeft.src = "https://via.placeholder.com/400x300/e0e0e0/000000?text=Select+Start";
+                    photoRight.src = "https://via.placeholder.com/400x300/d0d0d0/000000?text=Select+End";
+                    photoLeftLabel.textContent = "No photos";
+                    photoRightLabel.textContent = "No photos";
+                    return;
+                }
+                noPhotosMessage.style.display = 'none';
+
+                userPhotos.forEach(photo => {
+                    const img = document.createElement('img');
+                    img.src = photo.src;
+                    img.alt = photo.date;
+                    img.dataset.id = photo.id;
+                    img.title = photo.date;
+                    img.onclick = () => selectPhotoForComparison(photo);
+                    thumbnailSidebar.appendChild(img);
+                });
+
+                // Default selection: Start (oldest) vs End (newest)
+                if (!selectedPhotoLeft && userPhotos.length > 0) {
+                    selectedPhotoLeft = userPhotos[0];
+                    selectedPhotoRight = userPhotos[userPhotos.length - 1];
+                    updateComparisonView();
+                }
+            }
+
+            function updateComparisonView() {
+                document.querySelectorAll('.thumbnail-sidebar img').forEach(img => img.classList.remove('selected'));
+
+                if (selectedPhotoLeft) {
+                    photoLeft.src = selectedPhotoLeft.src;
+                    photoLeftLabel.textContent = selectedPhotoLeft.date;
+                    const leftThumb = document.querySelector(`.thumbnail-sidebar img[data-id="${selectedPhotoLeft.id}"]`);
+                    if (leftThumb) leftThumb.classList.add('selected');
+                } else {
+                    photoLeft.src = "https://via.placeholder.com/400x300/e0e0e0/000000?text=Select+Start";
+                    photoLeftLabel.textContent = "Select START Photo";
+                }
+
+                if (selectedPhotoRight) {
+                    photoRight.src = selectedPhotoRight.src;
+                    photoRightLabel.textContent = selectedPhotoRight.date;
+                    const rightThumb = document.querySelector(`.thumbnail-sidebar img[data-id="${selectedPhotoRight.id}"]`);
+                    if (rightThumb) rightThumb.classList.add('selected');
+                } else {
+                    photoRight.src = "https://via.placeholder.com/400x300/d0d0d0/000000?text=Select+End";
+                    photoRightLabel.textContent = "Select END Photo";
+                }
+            }
+
+            function selectPhotoForComparison(photo) {
+                // Logic to swap photos if the selected one is older than the current 'Left'
+                if (!selectedPhotoLeft || selectedPhotoLeft.id === photo.id || new Date(photo.date) < new Date(selectedPhotoLeft.date)) {
+                    // Assign to Left (Start Photo)
+                    selectedPhotoLeft = photo;
+                    // If Right is null or is older than the new Left, ensure Right is the newest available photo (or null)
+                    if (!selectedPhotoRight || new Date(selectedPhotoRight.date) < new Date(selectedPhotoLeft.date)) {
+                         selectedPhotoRight = userPhotos[userPhotos.length - 1];
+                    }
+                } else if (!selectedPhotoRight || new Date(photo.date) > new Date(selectedPhotoLeft.date)) {
+                    // Assign to Right (End Photo), but only if it's not the same as Left and is newer than Left
+                    if (photo.id !== selectedPhotoLeft.id) {
+                         selectedPhotoRight = photo;
+                    }
+                }
+                
+                updateComparisonView();
+            }
+            
+            // Modal visibility
+            viewGalleryBtn.onclick = () => { 
+                photoGalleryModal.style.display = "flex"; 
+                renderThumbnails(); 
+                updateComparisonView(); // Ensure comparison view is set correctly on open
+            };
+            photoGalleryCloseBtn.onclick = () => { photoGalleryModal.style.display = "none"; };
+
+
+            // Close modal by clicking outside
+            window.onclick = (event) => { 
+                if (event.target == logModal) { logModal.style.display = "none"; }
+                if (event.target == photoGalleryModal) { photoGalleryModal.style.display = "none"; } 
+            };
+
+            // Initial calls
+            updateGoalStats();
+            renderThumbnails();
+        });
+    </script>
+</body>
+</html>

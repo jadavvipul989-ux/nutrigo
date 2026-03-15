@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Superior Health Insights</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        /* CSS to implement superior UX/Design principles (Calming colors, clear grid) */
+        :root {
+            --primary-color: #3498db; /* Calming Blue */
+            --success-color: #2ecc71; /* Health Green */
+            --background-color: #f4f7f6; /* Light background for clean look */
+            --text-color: #333;
+            --card-background: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+        }
+
+        .sidebar { /* Ensure sidebar remains untouched */
+            /* Assuming sidebar styling from new.css */
+        }
+
+        .main-content {
+            flex-grow: 1;
+            padding: 30px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .insights-grid {
+            /* Changed to a more balanced three-column layout for diverse content */
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Main Content + Sidebar Widgets */
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-color);
+        }
+
+        .insight-card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .data-viz {
+            height: 250px; /* Placeholder for a chart/graph */
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 15px;
+            border: 1px dashed var(--border-color);
+            color: #7f8c8d;
+        }
+
+        .cta-button {
+            background-color: var(--success-color);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+            display: block; /* Make it a block element */
+            width: 100%; /* Full width in the widget */
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            background-color: #27ae60;
+        }
+
+        .expert-info {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .expert-info img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .expert-info span {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo"> <span class="logo-icon">🍊</span> <span class="logo-text">Nutrigo</span> </div>
+        <nav class="nav-menu">
+            <a href="new.html" class="nav-item"> <span>📊</span> <span>Dashboard</span> </a>
+            <a href="profile.html" class="nav-item"> <span>👤</span> <span>Profile</span> </a>
+            <a href="calendar.html" class="nav-item"> <span>📅</span> <span>Calendar</span> </a>
+            <a href="massage.html" class="nav-item"> <span>💬</span> <span>Messages</span> <span class="badge">8</span> </a>
+            <a href="heldiymenue.html" class="nav-item"> <span>🍽️</span> <span>Healthy Menu</span> </a>
+            <a href="mealplane.html" class="nav-item"> <span>📋</span> <span>Meal Plan</span> </a>
+            <a href="fooddilevry.html" class="nav-item"> <span>📖</span> <span>Food Diary</span> </a>
+            <a href="prossestreking.html" class="nav-item"> <span>📈</span> <span>Progress</span> </a>
+            <a href="prossestreking.html" class="nav-item"> <span>💪</span> <span>Exercises</span> </a>
+            <a href="health.html" class="nav-item active"> <span>💡</span> <span>Health Insights</span> </a>
+        </nav>
+        <button class="logout-btn"> <span>🚪</span> <span>Logout</span> </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>💡 **Superior** Health Insights</h1>
+                <p>Personalized suggestions, **credible data visualization**, and interactive tools powered by your activity logs.</p>
+            </div>
+        </header>
+
+        <div class="insights-grid">
+            <div class="main-insights-column">
+                
+                <div class="card insight-card">
+                    <h3>Weekly Macronutrient Breakdown 📊</h3>
+                    <p>Analysis of your last 7 days shows a **Fiber Deficiency** (-15% below goal). Increasing complex carbs can help.</p>
+                    <div class="data-viz">
+                        [Placeholder: Clear Bar Chart for Protein, Fat, Carbs, and Fiber]
+                    </div>
+                    <p class="text-sm text-gray-500 mt-2">**Pro Tip:** This chart uses clear contrast (red for low fiber) and is based on your logged meals.</p>
+                </div>
+                
+                <div class="card insight-card">
+                    <h3>Featured Educational Article: The Power of Soluble Fiber</h3>
+                    <div class="article-preview">
+                        <img src="https://drgooddeed.com/wp-content/uploads/2025/08/high-fiber-diet-1024x683.webp" alt="Fiber Rich Foods">
+                        <h4 class="font-semibold">5 Easy Ways to Boost Your Fiber Intake Daily</h4>
+                        <p class="text-sm text-gray-500">Learn why fiber is critical for heart health and how adding simple foods like oats and beans can close your 15% gap.</p>
+                    </div>
+                    <div class="expert-info">
+                        <img src="https://i.pinimg.com/736x/0b/54/fc/0b54fc8916eb0d17d31454f9e4d2763d.jpg" alt="Dr. Anya Sharma Profile">
+                        <div>
+                            **Authored by: Dr. Anya Sharma, MD, Certified Nutritionist**
+                            <span><a href="https://i.pinimg.com/736x/0b/54/fc/0b54fc8916eb0d17d31454f9e4d2763d.jpg">View Credentials & Citations</a> | Clinical Trial Reference: NEJM, 2023</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="right-column">
+                
+                <div class="card insight-card">
+                    <h3>Actionable Tools & Interactivity ✨</h3>
+                    
+                    <p>Need quick answers or a health check?</p>
+                    <button class="cta-button" style="background-color: var(--primary-color);">
+                        🧠 Take the Quick Stress Assessment Quiz
+                    </button>
+                    <button class="cta-button">
+                        💬 Launch AI Health Chatbot (Symptom Check & Q&A)
+                    </button>
+                </div>
+                
+                <div class="card insight-card">
+                    <h3>Personalized Next Step: Meet Your Coach</h3>
+                    <p>Based on your profile, we recommend a 15-minute consult to discuss your fiber goal.</p>
+                    <div class="item">
+                        <span class="icon">📅</span>
+                        <div>
+                            <div class="font-semibold">Book a Telemedicine Consultation</div>
+                            <span class="text-sm text-gray-500">See available slots with Nutrition Coach David Lee.</span>
+                        </div>
+                    </div>
+                    <button class="cta-button" style="background-color: #e67e22; margin-top: 15px;">
+                        Book Now
+                    </button>
+                </div>
+
+                <div class="card insight-card">
+                    <h3>Wearable Data Sync</h3>
+                    <p class="text-sm">Last Sync: 10 minutes ago</p>
+                    <div class="item">
+                        <span class="icon">⌚</span>
+                        <div>
+                            <div class="font-semibold">Sleep Score: 72/100 (Fair)</div>
+                            <span class="text-sm text-gray-500">You achieved 85% of your REM goal.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+</body>
+</html>

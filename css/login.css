@@ -1,0 +1,401 @@
+/* General Setup */
+:root {
+    --green-light: #4CAF50;
+    --green-dark: #2E7D32;
+    --green-accent: #66BB6A; /* Slightly lighter accent for active state */
+    --off-white: #f5f7fa;
+    --white: #ffffff;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+/* 1. Left Sidebar Specifications */
+.sidebar {
+    width: 300px;
+    min-height: 100vh;
+    color: var(--white);
+    padding: 40px 30px;
+    background: linear-gradient(180deg, var(--green-light) 0%, var(--green-dark) 100%);
+    box-shadow: 6px 0 10px rgba(0, 0, 0, 0.15);
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-header {
+    margin-bottom: 50px;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+/* Removed desktop content styles as they were empty */
+
+.nav-menu {
+    list-style: none;
+}
+
+/* Base style for the list item (minimal padding) */
+.nav-menu li {
+    margin: 15px 0; /* Slightly reduced margin */
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+    /* Removed padding and transition from li, moved to <a> */
+}
+
+/* Style for the Anchor Tag (Link) - Essential for proper clicking and styling */
+.nav-menu li a {
+    display: flex;
+    align-items: center;
+    color: inherit; /* Ensure link color is white */
+    text-decoration: none; /* Remove underline */
+    padding: 12px 15px; /* Padding for click area */
+    margin: 0; /* Reset default anchor margin */
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+/* Hover and Active states applied to the anchor tag */
+.nav-menu li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Placeholder for Active/Current Page state (add .active class via JS) */
+.nav-menu li a.active {
+    background: var(--white);
+    color: var(--green-dark);
+    font-weight: 700;
+    box-shadow: var(--shadow-light);
+}
+
+.nav-menu i {
+    width: 25px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+/* Mobile Menu Toggle (Hidden on Desktop) */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* 2. Right Main Area (Login Form) Specifications (No change here) */
+.main-area {
+    flex-grow: 1;
+    background-color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.login-container {
+    background: var(--white);
+    padding: 50px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 40px;
+}
+
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 50px 15px 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--green-light);
+}
+
+.input-group .icon-left {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-group .icon-right {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.input-group .icon-right:hover {
+    color: #555;
+}
+
+.helper-links {
+    text-align: right;
+    margin-bottom: 30px;
+}
+
+.forgot-password {
+    color: #777;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.forgot-password:hover {
+    color: var(--green-dark);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--green-light), #388E3C);
+    transition: opacity 0.2s, transform 0.1s;
+}
+
+.login-btn:hover {
+    opacity: 0.95;
+}
+
+.login-btn:active {
+    transform: scale(0.99);
+}
+
+.signup-prompt {
+    margin-top: 30px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.signup-link {
+    color: var(--green-dark);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+}
+
+/* 3. Popup Message System (No change here) */
+.popup-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: var(--white);
+    min-width: 250px;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.5s forwards;
+    position: relative;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.popup.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.popup i {
+    font-size: 1.3rem;
+    margin-right: 15px;
+}
+
+.popup-message {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-left: 20px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.popup-close:hover {
+    opacity: 1;
+}
+
+/* Popup Types */
+.popup.success { background-color: #4CAF50; }
+.popup.error { background-color: #F44336; }
+.popup.info { background-color: #2196F3; }
+.popup.warning { background-color: #FF9800; }
+
+/* 5. Responsiveness (UPDATED for a modern slide-out menu) */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        overflow-x: hidden; /* Prevent horizontal scroll when menu is off-screen */
+    }
+
+    /* Sidebar Header (Fixed Top Bar) */
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 100; /* Ensure it's above everything */
+        transform: none; 
+    }
+
+    .sidebar-header {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .desktop-content {
+        display: none; /* Hide any desktop-only elements */
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    /* Mobile Menu Toggle (Hamburger Icon) */
+    .mobile-menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* Hidden Navigation Menu (Slides out from the left) */
+    .nav-menu {
+        position: fixed;
+        top: 55px; /* Below the fixed header */
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background: var(--green-dark);
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        transform: translateX(-100%); /* Start off-screen to the left */
+        transition: transform 0.3s ease;
+        display: block; 
+    }
+
+    .nav-menu.active {
+        transform: translateX(0); /* Slide in */
+    }
+    
+    .nav-menu li {
+        margin: 10px 0;
+    }
+
+    /* Main Area Adjustments */
+    .main-area {
+        padding-top: 80px; /* Offset for the fixed top sidebar */
+        padding-bottom: 20px;
+    }
+
+    .login-container {
+        width: 95%; 
+        max-width: none;
+        padding: 30px 20px;
+    }
+
+    /* Popup Position Adjustment */
+    .popup-container {
+        top: 70px; /* Below top bar */
+        right: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+    }
+
+    .popup {
+        margin: 0 auto;
+        width: 90%;
+    }
+}

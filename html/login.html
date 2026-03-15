@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Assuming login.css contains the styling for the sidebar and login form -->
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Nutrigo</div>
+            <div class="desktop-content">
+                <!-- Content for desktop, like user name/avatar -->
+            </div>
+        </div>
+
+        <i class="fas fa-bars mobile-menu-toggle" id="menu-toggle"></i>
+
+        <ul class="nav-menu" id="nav-menu">
+            <!-- UPDATED: Wrapped content in <a> tags with dynamic href -->
+            <li class="nav-item">
+                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+            </li>
+            <li class="nav-item">
+                <a href="new.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a href="calendar.html"><i class="fas fa-calendar-alt"></i> Calendar</a>
+            </li>
+            <li class="nav-item">
+                <a href="massage.html"><i class="fas fa-envelope"></i> Messages</a>
+            </li>
+            <li class="nav-item">
+                <a href="heldiymenue.html"><i class="fas fa-seedling"></i> Healthy Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="mealplane.html"><i class="fas fa-utensils"></i> Meal Plan</a>
+            </li>
+            <li class="nav-item">
+                <a href="fooddilevry.html"><i class="fas fa-book"></i> Food Diary</a>
+            </li>
+            <li class="nav-item">
+                <a href="prossestreking.html"><i class="fas fa-tasks"></i> Progress</a>
+            </li>
+            <li class="nav-item">
+                <a href="Exercises.html"><i class="fas fa-running"></i> Exercises</a>
+            </li>
+            <li class="nav-item">
+                <a href="health.html"><i class="fas fa-heartbeat"></i> Health insights</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-area">
+        <div class="login-container">
+            <h1 class="login-title">Welcome Back!</h1>
+            <p class="login-subtitle">Sign in to continue to your Nutrigo dashboard.</p>
+
+            <form id="login-form">
+                <div class="input-group">
+                    <i class="fas fa-envelope icon-left"></i>
+                    <input type="text" id="email" placeholder="Enter your email or username" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock icon-left"></i>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <i class="fas fa-eye icon-right" id="password-toggle"></i>
+                </div>
+
+                <div class="helper-links">
+                    <a href="#" class="forgot-password" id="forgot-password-link">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">Log In</button>
+            </form>
+
+            <p class="signup-prompt">
+                Don't have an account? 
+                <a href="sign-up.html" class="signup-link" id="signup-link">Sign Up</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="popup-container" id="popup-container">
+    </div>
+
+    <script src="/javascript/login.js"></script>
+</body>
+</html>

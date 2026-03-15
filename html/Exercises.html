@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIT-2026: Hyper-Personalized Exercise</title>
+    <link rel="stylesheet" href="/css/Exercises.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="safety-disclaimer" role="alert">
+        ⚠️ **Safety First:** Consult your physician before starting any new fitness program.
+    </header>
+
+    <button id="hamburger-menu" aria-label="Open navigation menu">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="main-wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <span>Nutrigo</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="new.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="calendar.html"><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+                <li><a href="massage.html"><i class="fas fa-comments"></i> Messages <span class="badge">5</span></a></li>
+                <li><a href="heldiymenue.html" class="active"><i class="fas fa-utensils"></i> Healthy Menu</a></li>
+                <li><a href="mealplane.html"><i class="fas fa-clipboard-list"></i> Meal Plan</a></li>
+                <li><a href="fooddilevry.html"><i class="fas fa-book-open"></i> Food Diary</a></li>
+                <li><a href="prossestreking.html"><i class="fas fa-chart-line"></i> Progress</a></li>
+                <li><a href="Exercises.html"><i class="fas fa-dumbbell"></i> Exercises</a></li>
+                <li><a href="health.html"><i class="fas fa-heartbeat"></i> Health Insights</a></li>
+                <li class="logout-item"><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+
+        <main id="app-container">
+            <section id="onboarding-quiz" class="module">
+                <h2>🧠 Personalization Engine: Let's Get Started!</h2>
+                <p>Answer a few questions for your custom 2026 plan.</p>
+                <form id="quiz-form">
+                    <div class="form-group">
+                        <label for="goal">What is your primary goal?</label>
+                        <select id="goal" name="goal">
+                            <option value="weight-loss">Weight Loss</option>
+                            <option value="muscle-gain">Muscle Gain</option>
+                            <option value="mobility">Mobility/Flexibility</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="cta-button">Generate My Plan</button>
+                </form>
+            </section>
+
+            <section id="dashboard" class="module hidden">
+                <h2 id="user-greeting">👋 Welcome Back, [User Name]!</h2>
+                
+                <div class="metrics-bar">
+                    <div class="metric">
+                        <span>🔥 Recovery Score: <strong id="recovery-score">92%</strong></span>
+                        <button class="small-button connect-api" aria-label="Connect Wearable API">Connect Wearable</button>
+                    </div>
+                    <div class="metric">
+                        <span>🏆 Achievement Badges: <strong id="badge-count">3</strong></span>
+                    </div>
+                </div>
+                
+                <div id="weekly-plan">
+                    <h3>Your Personalized Weekly Schedule</h3>
+                    <div class="day-card" data-day="Mon">
+                        <h4>Monday: Full Body Dumbbells</h4>
+                        <p class="plan-summary">45 mins | Focus: Strength Endurance</p>
+                        <button class="small-button start-workout">Start Workout</button>
+                    </div>
+                    <button class="cta-button export-calendar">Add Plan to Calendar</button>
+                </div>
+            </section>
+
+            <div id="exercise-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+                <div class="modal-content">
+                    <h2 id="modal-title">Goblet Squat</h2>
+                    
+                    <div class="guidance-media">
+                        <video controls muted loop autoplay class="exercise-video" poster="placeholder-video.webp" aria-label="Multi-Angle Exercise Video">
+                            <source src="goblet-squat.mp4" type="video/mp4">
+                        </video>
+                        
+                        <div class="skeletal-model-3d">
+                            <p class="overlay-text">**3D Overlay:** Observe Spinal Alignment & Joint Angles</p>
+                        </div>
+
+                        <img src="goblet-squat-gif.gif" alt="Animated breakdown of the Goblet Squat movement phases" class="step-gif">
+                    </div>
+
+                    <div class="guidance-text">
+                        <h3>✅ Key Form Cues</h3>
+                        <ul class="cues-list">
+                            <li>**Keep your chest up** and gaze forward.</li>
+                            <li>Drive through your **heels**.</li>
+                            <li>Maintain a **neutral spine** (highlighted in 3D model).</li>
+                        </ul>
+
+                        <h3>❌ Common Mistakes to Avoid</h3>
+                        <ul class="mistakes-list">
+                            <li>Letting your knees collapse inward.</li>
+                            <li>Rounding your lower back.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="adaptive-controls">
+                        <button class="difficulty-switch regression">⬇️ Regression (Easier: Chair Squat)</button>
+                        <button class="difficulty-switch progression">⬆️ Progression (Harder: Bulgarian Split Squat)</button>
+                    </div>
+                    
+                    <div class="logging-form">
+                        <h4>Log Your Set</h4>
+                        <input type="number" placeholder="Reps" aria-label="Reps completed">
+                        <input type="number" placeholder="Weight (lbs/kg)" aria-label="Weight used">
+                        <button class="small-button log-set">Log Set</button>
+                    </div>
+
+                    <button class="close-modal" aria-label="Close Exercise Guidance">Close</button>
+                </div>
+            </div>
+
+            <section id="community-gamification" class="module">
+                <h2>🏆 Community & Achievements</h2>
+                <div class="challenge-card">
+                    <h3>🔥 Fall Fitness Challenge: 30-Day Core Strength</h3>
+                    <p>Join 4,500 users in this month's challenge!</p>
+                    <div class="leaderboard-preview">
+                        <span>#1 User_XYZ</span> | <span>#2 User_PQR</span> | <span>**You: #15**</span>
+                    </div>
+                    <button class="small-button join-challenge">Join Challenge</button>
+                </div>
+
+                <div class="achievements">
+                    <h3>Recent Badges Earned</h3>
+                    <span class="badge" title="First Week Complete Badge">🥇</span>
+                    <span class="badge" title="Personal Record Smasher Badge">💪</span>
+                </div>
+            </section>
+
+            <footer>
+                <p>Content curated and reviewed by Certified Personal Trainers and Physical Therapists. <a href="#">Read our scientific backing</a>.</p>
+                <p><a href="#">Accessibility Statement</a> | <a href="#">Mobile App</a></p>
+            </footer>
+
+        </main>
+    </div> <script src="/javascript/Exercises.js"></script>
+</body>
+</html>

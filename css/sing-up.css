@@ -1,0 +1,627 @@
+/* General Setup */
+:root {
+    --green-light: #4CAF50;
+    --green-dark: #2E7D32;
+    --green-accent: #66BB6A; /* Slightly lighter accent for active state */
+    --off-white: #f5f7fa;
+    --white: #ffffff;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --red: #F44336;
+    --orange: #FF9800;
+    --blue: #2196F3;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+    counter-reset: step-counter; /* Initialize step counter for progress tracker */
+}
+
+/* 1. Left Sidebar Specifications (Matching login.css) */
+.sidebar {
+    width: 300px;
+    min-height: 100vh;
+    color: var(--white);
+    padding: 40px 30px;
+    background: linear-gradient(180deg, var(--green-light) 0%, var(--green-dark) 100%);
+    box-shadow: 6px 0 10px rgba(0, 0, 0, 0.15);
+    transition: width 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-header {
+    margin-bottom: 50px;
+}
+
+.logo {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.user-greeting {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.nav-menu {
+    list-style: none;
+}
+
+.nav-menu li {
+    margin: 15px 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Style for the Anchor Tag (Link) - Essential for proper clicking and styling */
+.nav-menu li a {
+    display: flex;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    padding: 12px 15px;
+    margin: 0;
+    border-radius: 8px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-menu li a:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.nav-menu li a.active {
+    background: var(--white);
+    color: var(--green-dark);
+    font-weight: 700;
+    box-shadow: var(--shadow-light);
+}
+
+.nav-menu i {
+    width: 25px;
+    text-align: center;
+    margin-right: 15px;
+}
+
+/* Mobile Menu Toggle (Hidden on Desktop) */
+.mobile-menu-toggle {
+    display: none;
+}
+
+/* 2. Right Main Area (Registration Form) Specifications */
+.main-area {
+    flex-grow: 1;
+    background-color: var(--off-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.registration-container {
+    background: var(--white);
+    padding: 40px 50px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-light);
+    width: 100%;
+    max-width: 650px; 
+    text-align: center;
+}
+
+.reg-title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.reg-subtitle {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+/* Input Group Styles */
+.input-group {
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 15px 50px 15px 50px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+    /* Ensure select matches input styling */
+    height: 50px; 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; 
+    background-color: var(--white);
+    /* SVG icon for dropdown arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%3E%3Cpath%20fill%3D%22%23999%22%20d%3D%22M7%2010l5%205%205-5z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: var(--green-light);
+}
+
+.input-group .icon-left {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+}
+
+.input-group .icon-right {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.input-group .icon-right:hover {
+    color: #555;
+}
+
+/* Two-column Input Layout */
+.input-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+.input-row .input-group {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+/* Progress Tracker */
+.progress-tracker {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 0 20px;
+    position: relative;
+}
+.progress-tracker::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background-color: #ddd;
+    z-index: 0;
+    transform: translateY(-50%);
+}
+.step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999;
+    font-size: 0.9rem;
+}
+.step::before {
+    content: counter(step-counter);
+    counter-increment: step-counter;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #ddd;
+    color: var(--white);
+    margin-bottom: 8px;
+    font-weight: 600;
+    border: 2px solid #ccc;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+.progress-tracker .step.active {
+    color: var(--green-dark);
+    font-weight: 600;
+}
+.progress-tracker .step.active::before {
+    background-color: var(--green-dark);
+    border-color: var(--white);
+    box-shadow: 0 0 0 3px var(--green-dark);
+}
+
+/* Password Strength Meter */
+.strength-meter {
+    height: 5px;
+    width: 100%;
+    background: #eee;
+    border-radius: 3px;
+    margin-top: 5px;
+    transition: background-color 0.3s;
+}
+.strength-meter[data-strength="weak"] { background-color: var(--red); }
+.strength-meter[data-strength="medium"] { background-color: var(--orange); }
+.strength-meter[data-strength="strong"] { background-color: var(--green-light); }
+
+
+/* Main Registration Button */
+.reg-btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(90deg, var(--green-light), #388E3C);
+    transition: opacity 0.2s, transform 0.1s;
+    margin-top: 15px;
+}
+.reg-btn:hover { opacity: 0.95; }
+.reg-btn:active { transform: scale(0.99); }
+
+/* Terms Checkbox Group */
+.terms-group {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    margin-bottom: 25px;
+    font-size: 0.9rem;
+    color: #555;
+}
+.terms-group input[type="checkbox"] {
+    margin-right: 10px;
+    min-width: 18px;
+    min-height: 18px;
+    cursor: pointer;
+    accent-color: var(--green-dark);
+}
+.terms-group a {
+    color: var(--green-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+.terms-group a:hover {
+    text-decoration: underline;
+}
+
+/* Social Login */
+.social-login {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+.social-login p {
+    color: #777;
+    margin-bottom: 15px;
+}
+.social-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+.social-btn {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s;
+}
+.social-btn i {
+    margin-right: 10px;
+}
+.google-btn { background-color: var(--white); color: #444; }
+.google-btn:hover { background-color: #f0f0f0; }
+.apple-btn { background-color: #000; color: var(--white); border-color: #000; }
+.apple-btn:hover { background-color: #333; }
+
+/* Login Prompt */
+.login-prompt {
+    margin-top: 30px;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.login-link {
+    color: var(--green-dark);
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.2s;
+    cursor: pointer;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal {
+    display: none; 
+    position: fixed; 
+    z-index: 200; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.6); 
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto; 
+    padding: 30px;
+    border-radius: 12px;
+    width: 80%; 
+    max-width: 500px;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.modal-close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+    color: #000;
+    text-decoration: none;
+}
+.modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+    text-align: left;
+    margin-top: 20px;
+    line-height: 1.6;
+}
+
+/* 3. Popup Message System */
+.popup-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: var(--white);
+    min-width: 250px;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.5s forwards;
+    position: relative;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.popup.slide-out {
+    animation: slideOut 0.5s forwards;
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.popup i {
+    font-size: 1.3rem;
+    margin-right: 15px;
+}
+
+.popup-message {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.popup-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-left: 20px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.popup-close:hover {
+    opacity: 1;
+}
+
+/* Popup Types */
+.popup.success { background-color: #4CAF50; }
+.popup.error { background-color: #F44336; }
+.popup.info { background-color: #2196F3; }
+.popup.warning { background-color: #FF9800; }
+
+/* 5. Responsiveness (Matching login.css mobile slide-out menu) */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    /* Sidebar Header (Fixed Top Bar) */
+    .sidebar {
+        width: 100%;
+        min-height: auto;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        position: fixed; /* Fixed position */
+        top: 0;
+        left: 0;
+        z-index: 100;
+        transform: none; 
+    }
+
+    .sidebar-header {
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+    }
+    
+    .desktop-content {
+        display: none; 
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    /* Mobile Menu Toggle (Hamburger Icon) */
+    .mobile-menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+    }
+
+    /* Hidden Navigation Menu (Slides out from the left) */
+    .nav-menu {
+        position: fixed;
+        top: 70px; /* Below the fixed header */
+        left: 0;
+        width: 250px;
+        height: 100vh;
+        background: var(--green-dark);
+        padding: 20px;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+        transform: translateX(-100%); /* Start off-screen to the left */
+        transition: transform 0.3s ease;
+        display: block; 
+    }
+
+    .nav-menu.active {
+        transform: translateX(0); /* Slide in */
+    }
+    
+    .nav-menu li {
+        margin: 10px 0;
+    }
+
+    /* Main Area Adjustments */
+    .main-area {
+        padding-top: 80px; /* Offset for the fixed top sidebar */
+        padding-bottom: 20px;
+    }
+
+    .registration-container {
+        width: 95%; 
+        max-width: none;
+        padding: 30px 20px;
+    }
+
+    /* Mobile Specific Registration Layout */
+    @media (max-width: 600px) {
+        .registration-container {
+            padding: 30px 20px;
+        }
+        .input-row, .social-buttons {
+            flex-direction: column;
+            gap: 15px;
+        }
+        .progress-tracker {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            font-size: 0.8rem;
+            padding: 0 5px;
+        }
+        .progress-tracker::before {
+            left: 20%;
+            right: 20%;
+        }
+        .step::before {
+            width: 25px;
+            height: 25px;
+        }
+        .terms-group {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .terms-group input[type="checkbox"] {
+            margin-bottom: 10px;
+        }
+    }
+    
+    /* Popup Position Adjustment */
+    .popup-container {
+        top: 70px; /* Below top bar */
+        right: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 10px;
+    }
+
+    .popup {
+        margin: 0 auto;
+        width: 90%;
+    }
+}

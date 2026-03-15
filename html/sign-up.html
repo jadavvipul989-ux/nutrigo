@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/sing-up.css"> <!-- Linked to dedicated CSS file -->
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">Nutrigo</div>
+            <div class="desktop-content">
+                <div class="user-greeting">Join Nutrigo Today!</div>
+                <div class="tagline">Start your health transformation today</div>
+            </div>
+        </div>
+
+        <i class="fas fa-bars mobile-menu-toggle" id="menu-toggle"></i>
+
+        <ul class="nav-menu" id="nav-menu">
+            <!-- UPDATED: Using <a> tags for native navigation, matching index.html -->
+            <li class="nav-item"><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+            <li class="nav-item"><a href="new.html"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="calendar.html"><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+            <li class="nav-item"><a href="massage.html"><i class="fas fa-envelope"></i> Messages</a></li>
+            <li class="nav-item"><a href="heldiymenue.html"><i class="fas fa-seedling"></i> Healthy Menu</a></li>
+            <li class="nav-item"><a href="mealplane.html"><i class="fas fa-utensils"></i> Meal Plan</a></li>
+            <li class="nav-item"><a href="fooddilevry.html"><i class="fas fa-book"></i> Food Diary</a></li>
+            <li class="nav-item"><a href="prossestreking.html"><i class="fas fa-tasks"></i> Progress</a></li>
+            <li class="nav-item"><a href="Exercises.html"><i class="fas fa-running"></i> Exercises</a></li>
+            <li class="nav-item"><a href="health.html"><i class="fas fa-heartbeat"></i> Health insights</a></li>
+        </ul>
+    </div>
+
+    <div class="main-area">
+        <div class="registration-container">
+            <h1 class="reg-title">Create Your Account</h1>
+            <p class="reg-subtitle">Join thousands on their journey to better health</p>
+
+            <form id="registration-form">
+                
+                <div class="progress-tracker">
+                    <div class="step active">1. Account</div>
+                    <div class="step">2. Profile</div>
+                    <div class="step">3. Goals</div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-group">
+                        <i class="fas fa-user icon-left"></i>
+                        <input type="text" id="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-user icon-left"></i>
+                        <input type="text" id="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-envelope icon-left"></i>
+                    <input type="email" id="email" placeholder="Email Address" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock icon-left"></i>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <i class="fas fa-eye icon-right password-toggle" data-target="password"></i>
+                    <div id="password-strength" class="strength-meter"></div>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock icon-left"></i>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                    <i class="fas fa-eye icon-right password-toggle" data-target="confirmPassword"></i>
+                </div>
+
+                <div class="input-row optional-fields">
+                    <div class="input-group">
+                        <i class="fas fa-calendar-alt icon-left"></i>
+                        <input type="date" id="dob" placeholder="Date of Birth (Optional)">
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-bullseye icon-left"></i>
+                        <select id="fitnessGoal">
+                            <option value="" disabled selected>Select Fitness Goal</option>
+                            <option value="weightLoss">Weight Loss</option>
+                            <option value="muscleGain">Muscle Gain</option>
+                            <option value="maintenance">Maintenance</option>
+                            <option value="overallHealth">Overall Health</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="terms-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">
+                        I agree to the 
+                        <a href="#" id="terms-link">Terms of Service</a> 
+                        and 
+                        <a href="#" id="privacy-link">Privacy Policy</a>
+                    </label>
+                </div>
+
+                <button type="submit" class="reg-btn">Create Account</button>
+            </form>
+
+            <div class="social-login">
+                <p>Or sign up with</p>
+                <div class="social-buttons">
+                    <button class="social-btn google-btn"><i class="fab fa-google"></i> Google</button>
+                    <button class="social-btn apple-btn"><i class="fab fa-apple"></i> Apple</button>
+                </div>
+            </div>
+
+            <p class="login-prompt">
+                Already have an account? 
+                <a href="login.html" class="login-link">Sign In</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="popup-container" id="popup-container">
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <h2 id="modal-title">Terms of Service</h2>
+            <div id="modal-body">
+                This is a simulation of the terms and conditions or privacy policy. 
+                By clicking "I agree," you accept these simulated terms. 
+                Please note: No real data is being processed.
+            </div>
+        </div>
+    </div>
+
+    <script src="/javascript/sing-up.js"></script>
+</body>
+</html>

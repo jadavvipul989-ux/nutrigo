@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Messages</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        .messages-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            height: calc(100vh - 100px); /* Adjust height for main content */
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+        .thread-list {
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+        }
+        .thread-item {
+            padding: 15px;
+            border-bottom: 1px solid #f5f5f5;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .thread-item:hover, .thread-item.active {
+            background-color: #f0f8ff;
+        }
+        .thread-name { font-weight: bold; color: #34495e; }
+        .thread-preview { font-size: 0.8em; color: #7f8c8d; }
+
+        .chat-window {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .chat-messages {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        .message-input-area {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .message-input-area input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+        .message-input-area button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- Sidebar content copied from index.html (ensure active class is correct) -->
+        <div class="logo"> <span class="logo-icon">🍊</span> <span class="logo-text">Nutrigo</span> </div>
+        <nav class="nav-menu">
+            <!-- Nav links here, ensuring 'messages.html' is active -->
+            <a href="new.html" class="nav-item"> <span>📊</span> <span>Dashboard</span> </a>
+            <a href="profile.html".html" class="nav-item"> <span>👤</span> <span>Profile</span> </a>
+            <a href="calendar.html" class="nav-item"> <span>📅</span> <span>Calendar</span> </a>
+            <a href="massage.html" class="nav-item active"> <span>💬</span> <span>Messages</span> <span class="badge">8</span> </a>
+            <a href="heldiymenue.html" class="nav-item"> <span>🍽️</span> <span>Healthy Menu</span> </a>
+            <a href="mealplane.html" class="nav-item"> <span>📋</span> <span>Meal Plan</span> </a>
+            <a href="food-diary.html" class="nav-item"> <span>📖</span> <span>Food Diary</span> </a>
+            <a href="prossestreking.html" class="nav-item"> <span>📈</span> <span>Progress</span> </a>
+            <a href="Nutrigo - Exercises.html" class="nav-item"> <span>💪</span> <span>Exercises</span> </a>
+            <a href="health.html" class="nav-item"> <span>💡</span> <span>Health Insights</span> </a>
+        </nav>
+        <button class="logout-btn"> <span>🚪</span> <span>Logout</span> </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>💬 Messages</h1>
+                <p>Connect with your coach and community.</p>
+            </div>
+        </header>
+
+        <div class="messages-container">
+            <div class="thread-list">
+                <div class="thread-item active">
+                    <div class="thread-name">Coach Sarah</div>
+                    <div class="thread-preview">You reached 75% of your goal!</div>
+                </div>
+                <div class="thread-item">
+                    <div class="thread-name">The Running Club</div>
+                    <div class="thread-preview">New 5k training plan available.</div>
+                </div>
+                <div class="thread-item">
+                    <div class="thread-name">System Notifications</div>
+                    <div class="thread-preview">Your progress report is ready.</div>
+                </div>
+            </div>
+            <div class="chat-window">
+                <div class="chat-messages">
+                    <!-- Placeholder messages -->
+                    <p class="text-sm text-gray-500 mb-3 text-center">Today, 9:00 AM</p>
+                    <div class="bg-gray-200 p-3 rounded-xl max-w-xs mb-3">Hi Adam! How was your weight training session yesterday?</div>
+                    <div class="bg-blue-500 text-white p-3 rounded-xl max-w-xs ml-auto">It was great, thanks! Legs are feeling it today.</div>
+                </div>
+                <div class="message-input-area">
+                    <input type="text" placeholder="Type your message...">
+                    <button>Send</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

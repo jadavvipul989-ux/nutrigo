@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Food Diary</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        .diary-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .diary-controls select {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .diary-day {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+        .day-header h3 {
+            margin: 0;
+            color: #2c3e50;
+        }
+        .meal-entry {
+            border-bottom: 1px solid #f0f0f0;
+            padding: 10px 0;
+        }
+        .meal-entry:last-child {
+            border-bottom: none;
+        }
+        .meal-name {
+            font-weight: bold;
+            color: #34495e;
+            font-size: 1.1em;
+        }
+        .macro-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- Sidebar content, ensuring 'food-diary.html' is active -->
+        <div class="logo"> <span class="logo-icon">🍊</span> <span class="logo-text">Nutrigo</span> </div>
+        <nav class="nav-menu">
+            <a href="new.html" class="nav-item"> <span>📊</span> <span>Dashboard</span> </a>
+            <a href="profile.html" class="nav-item"> <span>👤</span> <span>Profile</span> </a>
+            <a href="calendar.html" class="nav-item"> <span>📅</span> <span>Calendar</span> </a>
+            <a href="messages.html" class="nav-item"> <span>💬</span> <span>Messages</span> <span class="badge">8</span> </a>
+            <a href="heldiymenue.html" class="nav-item"> <span>🍽️</span> <span>Healthy Menu</span> </a>
+            <a href="mealplane.html" class="nav-item"> <span>📋</span> <span>Meal Plan</span> </a>
+            <a href="fooddilevry.html" class="nav-item active"> <span>📖</span> <span>Food Diary</span> </a>
+            <a href="prossestreking.html" class="nav-item"> <span>📈</span> <span>Progress</span> </a>
+            <a href="Exercises.html" class="nav-item"> <span>💪</span> <span>Exercises</span> </a>
+            <a href="health.html" class="nav-item"> <span>💡</span> <span>Health Insights</span> </a>
+        </nav>
+        <button class="logout-btn"> <span>🚪</span> <span>Logout</span> </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>📖 Food Diary</h1>
+                <p>A chronological record of everything you have eaten.</p>
+            </div>
+        </header>
+
+        <div class="diary-controls">
+            <input type="date" value="2028-09-05">
+            <select>
+                <option>View Day</option>
+                <option>View Week</option>
+                <option>View Month</option>
+            </select>
+        </div>
+
+        <div class="diary-day">
+            <div class="day-header">
+                <h3>Tuesday, September 5, 2028</h3>
+                <span class="text-lg font-bold text-green-600">Total: 1,750 kcal</span>
+            </div>
+            
+            <div class="meal-entry">
+                <div class="meal-name">Breakfast: Scrambled Eggs</div>
+                <div class="macro-row">
+                    <span>🔥 300 kcal</span>
+                    <span>Carbs: 25g</span>
+                    <span>Protein: 20g</span>
+                    <span>Fat: 12g</span>
+                </div>
+            </div>
+
+            <div class="meal-entry">
+                <div class="meal-name">Lunch: Grilled Chicken Salad</div>
+                <div class="macro-row">
+                    <span>🔥 450 kcal</span>
+                    <span>Carbs: 40g</span>
+                    <span>Protein: 35g</span>
+                    <span>Fat: 20g</span>
+                </div>
+            </div>
+            
+            <div class="meal-entry">
+                <div class="meal-name">Dinner: Grilled Salmon</div>
+                <div class="macro-row">
+                    <span>🔥 650 kcal</span>
+                    <span>Carbs: 50g</span>
+                    <span>Protein: 45g</span>
+                    <span>Fat: 25g</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

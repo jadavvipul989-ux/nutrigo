@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Meal Plan</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        .plan-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .plan-controls button {
+            background-color: #3498db;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+        }
+        .day-column {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+        .day-column h4 {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed #eee;
+            padding-bottom: 5px;
+        }
+        .meal-slot {
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f7f7f7;
+            border-left: 3px solid #ccc;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+        .meal-slot.breakfast { border-left-color: #f1c40f; }
+        .meal-slot.lunch { border-left-color: #2ecc71; }
+        .meal-slot.dinner { border-left-color: #e74c3c; }
+        .meal-slot.snack { border-left-color: #9b59b6; }
+        
+        .meal-slot span {
+            display: block;
+            font-size: 0.75em;
+            color: #7f8c8d;
+        }
+
+        /* Utility classes for the totals */
+        .text-sm { font-size: 0.875rem; }
+        .mt-3 { margin-top: 0.75rem; }
+        .font-semibold { font-weight: 600; }
+        .text-green-600 { color: #16a34a; }
+        .text-red-600 { color: #dc2626; }
+        .text-gray-400 { color: #9ca3af; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo"> <span class="logo-icon">🍊</span> <span class="logo-text">Nutrigo</span> </div>
+        <nav class="nav-menu">
+            <a href="new.html" class="nav-item"> <span>📊</span> <span>Dashboard</span> </a>
+            <a href="profile.html" class="nav-item"> <span>👤</span> <span>Profile</span> </a>
+            <a href="calendar.html" class="nav-item"> <span>📅</span> <span>Calendar</span> </a>
+            <a href="massage.html" class="nav-item"> <span>💬</span> <span>Messages</span> <span class="badge">8</span> </a>
+            <a href="heldiymenue.html" class="nav-item"> <span>🍽️</span> <span>Healthy Menu</span> </a>
+            <a href="mealplane.html" class="nav-item active"> <span>📋</span> <span>Meal Plan</span> </a>
+            <a href="fooddilevry.html" class="nav-item"> <span>📖</span> <span>Food Diary</span> </a>
+            <a href="prossestreking.html" class="nav-item"> <span>📈</span> <span>Progress</span> </a>
+            <a href="Exercises.html" class="nav-item"> <span>💪</span> <span>Exercises</span> </a>
+            <a href="health-insights.html" class="nav-item"> <span>💡</span> <span>Health Insights</span> </a>
+        </nav>
+        <button class="logout-btn"> <span>🚪</span> <span>Logout</span> </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>📋 Weekly Meal Plan</h1>
+                <p>Plan your week to hit your target of 1,800 kcal/day.</p>
+            </div>
+        </header>
+
+        <div class="plan-controls">
+            <h2>Week of Oct 14 - Oct 20</h2>
+            <button>Save Plan & Forecast</button>
+        </div>
+
+        <div class="week-grid">
+            <div class="day-column">
+                <h4>Mon</h4>
+                <div class="meal-slot breakfast">Oatmeal (350 kcal)</div>
+                <div class="meal-slot lunch">Chicken Salad (450 kcal)</div>
+                <div class="meal-slot dinner">Turkey Chili (550 kcal)</div>
+                <div class="meal-slot snack">Apple & Nuts (150 kcal)</div>
+                <div class="text-sm mt-3 font-semibold text-green-600">Total: 1,500 kcal</div>
+            </div>
+
+            <div class="day-column">
+                <h4>Tue</h4>
+                <div class="meal-slot breakfast">Eggs & Toast (300 kcal)</div>
+                <div class="meal-slot lunch">Tuna Sandwich (480 kcal)</div>
+                <div class="meal-slot dinner">Workout Day (1,900 kcal budget)</div>
+                <div class="meal-slot snack">Yogurt (120 kcal)</div>
+                <div class="text-sm mt-3 font-semibold text-red-600">Total: 900 kcal</div>
+            </div>
+
+            <div class="day-column">
+                <h4>Wed</h4>
+                <div class="meal-slot breakfast">Protein Shake (280 kcal)</div>
+                <div class="meal-slot lunch">Lentil Soup (350 kcal)</div>
+                <div class="meal-slot dinner">Salmon (600 kcal)</div>
+                <div class="meal-slot snack">Empty</div>
+                <div class="text-sm mt-3 font-semibold text-green-600">Total: 1,230 kcal</div>
+            </div>
+
+            <div class="day-column">
+                <h4>Thu</h4>
+                <div class="meal-slot">Empty Slot +</div>
+                <div class="text-sm mt-3 text-gray-400">Total: 0 kcal</div>
+            </div>
+
+            <div class="day-column">
+                <h4>Fri</h4>
+                <div class="meal-slot">Empty Slot +</div>
+                <div class="text-sm mt-3 text-gray-400">Total: 0 kcal</div>
+            </div>
+
+            <div class="day-column">
+                <h4>Sat</h4>
+                <div class="meal-slot">Empty Slot +</div>
+                <div class="text-sm mt-3 text-gray-400">Total: 0 kcal</div>
+            </div>
+
+            <div class="day-column">
+                <h4>Sun</h4>
+                <div class="meal-slot">Empty Slot +</div>
+                <div class="text-sm mt-3 text-gray-400">Total: 0 kcal</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

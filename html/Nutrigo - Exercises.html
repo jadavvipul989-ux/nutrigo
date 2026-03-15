@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Exercises</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        .exercise-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .exercise-filters select {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        .exercise-list-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .workout-card {
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        .workout-card h4 {
+            color: #3498db;
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        .details-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 10px;
+        }
+        .cardio-badge { background-color: #f0f8ff; color: #3498db; padding: 4px 8px; border-radius: 4px; }
+        .strength-badge { background-color: #fff0f0; color: #e74c3c; padding: 4px 8px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <!-- Sidebar content, ensuring 'exercises.html' is active -->
+        <div class="logo"> <span class="logo-icon">🍊</span> <span class="logo-text">Nutrigo</span> </div>
+        <nav class="nav-menu">
+            <a href="new.html" class="nav-item"> <span>📊</span> <span>Dashboard</span> </a>
+            <a href="profile.html" class="nav-item"> <span>👤</span> <span>Profile</span> </a>
+            <a href="calendar.html" class="nav-item"> <span>📅</span> <span>Calendar</span> </a>
+            <a href="massage.html" class="nav-item"> <span>💬</span> <span>Messages</span> <span class="badge">8</span> </a>
+            <a href="heldiymenue.html" class="nav-item"> <span>🍽️</span> <span>Healthy Menu</span> </a>
+            <a href="mealplane.html" class="nav-item"> <span>📋</span> <span>Meal Plan</span> </a>
+            <a href="fooddilevry.html" class="nav-item"> <span>📖</span> <span>Food Diary</span> </a>
+            <a href="prossestreking.html" class="nav-item"> <span>📈</span> <span>Progress</span> </a>
+            <a href="Nutrigo - Exercises.html" class="nav-item active"> <span>💪</span> <span>Exercises</span> </a>
+            <a href="health.html" class="nav-item"> <span>💡</span> <span>Health Insights</span> </a>
+        </nav>
+        <button class="logout-btn"> <span>🚪</span> <span>Logout</span> </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>💪 Exercise Library & Routines</h1>
+                <p>Find new workouts or track your personal bests.</p>
+            </div>
+        </header>
+
+        <div class="exercise-filters">
+            <button class="form-section button" style="background-color: #2ecc71;">+ Create New Routine</button>
+            <select>
+                <option>Filter by Category</option>
+                <option>Cardio</option>
+                <option>Strength</option>
+                <option>Flexibility</option>
+            </select>
+        </div>
+
+        <div class="exercise-list-grid">
+            <div class="workout-card">
+                <div class="details-row">
+                    <h4>Beginner Full Body Strength</h4>
+                    <span class="strength-badge">Strength</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">Focus on major muscle groups using light weights.</p>
+                <div class="details-row mt-3">
+                    <span>⏱️ 45 min</span>
+                    <span>🔥 Est. 350 kcal</span>
+                </div>
+            </div>
+            <div class="workout-card">
+                <div class="details-row">
+                    <h4>30-Min HIIT Cardio</h4>
+                    <span class="cardio-badge">Cardio</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">High intensity intervals for maximum calorie burn.</p>
+                <div class="details-row mt-3">
+                    <span>⏱️ 30 min</span>
+                    <span>🔥 Est. 450 kcal</span>
+                </div>
+            </div>
+            <div class="workout-card">
+                <div class="details-row">
+                    <h4>Daily Flexibility Stretch</h4>
+                    <span class="cardio-badge" style="background-color: #f8f0ff; color: #9b59b6;">Flexibility</span>
+                </div>
+                <p class="text-sm text-gray-600 mt-2">A quick routine to improve range of motion.</p>
+                <div class="details-row mt-3">
+                    <span>⏱️ 15 min</span>
+                    <span>🔥 Est. 50 kcal</span>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

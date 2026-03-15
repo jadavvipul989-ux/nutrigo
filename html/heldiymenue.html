@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Healthy Menu Library</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        /* General Grid for Menu Items */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Adjusted min-width for better mobile handling */
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* Recipe Card Styling (High Contrast, Shadow, Hover Effect for Interactivity) */
+        .recipe-card {
+            background: #ffffff; /* High contrast with body background */
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Stronger shadow for emphasis */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .recipe-card:hover {
+            transform: translateY(-7px); /* More noticeable hover effect */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Image Styling (Visuals First) */
+        .recipe-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        /* Info Section */
+        .recipe-info {
+            padding: 15px 20px;
+        }
+
+        /* Clear and Descriptive Title */
+        .recipe-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        /* Descriptive Text - Storytelling/Cooking Method */
+        .recipe-description {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-bottom: 10px;
+        }
+
+        /* Nutritional/Time Meta Information */
+        .recipe-meta {
+            margin-top: 5px;
+            font-size: 0.95em;
+            color: #27ae60; /* Use a healthy, vibrant color */
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .recipe-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Macro/Dietary Badges/Icons */
+        .macro-tags {
+            margin-top: 10px;
+        }
+        .macro-tags span {
+            display: inline-block;
+            background-color: #e8f8f5; /* Lighter background for badges */
+            color: #2c3e50; /* Darker text for readability */
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #2ecc71; /* Accent border for emphasis */
+        }
+
+        /* Responsive Mobile Optimization (Hamburger is in the assumed new.css for the header if needed) */
+        @media (max-width: 600px) {
+             /* Assuming sidebar hides/collapses via new.css on small screens */
+            .recipe-card {
+                margin: 0 auto;
+                max-width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo"> <span class="logo-icon">🍊</span> <span class="logo-text">Nutrigo</span> </div>
+        <nav class="nav-menu">
+            <a href="new.html" class="nav-item"> <span>📊</span> <span>Dashboard</span> </a>
+            <a href="profile.html" class="nav-item"> <span>👤</span> <span>Profile</span> </a>
+            <a href="calendar.html" class="nav-item"> <span>📅</span> <span>Calendar</span> </a>
+            <a href="massage.html" class="nav-item"> <span>💬</span> <span>Messages</span> <span class="badge">8</span> </a>
+            <a href="heldiymenue.html" class="nav-item active"> <span>🍽️</span> <span>Healthy Menu</span> </a>
+            <a href="mealplane.html" class="nav-item"> <span>📋</span> <span>Meal Plan</span> </a>
+            <a href="fooddilevry.html" class="nav-item"> <span>📖</span> <span>Food Diary</span> </a>
+            <a href="prossestreking.html" class="nav-item"> <span>📈</span> <span>Progress</span> </a>
+            <a href="Nutrigo - Exercises.html" class="nav-item"> <span>💪</span> <span>Exercises</span> </a>
+            <a href="heldiymenue.html" class="nav-item"> <span>💡</span> <span>Health Insights</span> </a>
+        </nav>
+        <button class="logout-btn"> <span>🚪</span> <span>Logout</span> </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>🍽️ Wellness Recipe Library</h1>
+                <p>Discover **fresh and vibrant recipes** tailored to your calorie and macro goals.</p>
+                <div class="filter-bar" style="margin-top: 15px;">
+                    <button class="filter-btn" style="background-color: #2ecc71; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer;">🌱 **Healthy Options**</button>
+                    <input type="text" placeholder="Search recipes..." style="padding: 8px; border: 1px solid #ccc; border-radius: 5px; margin-left: 10px;">
+                </div>
+            </div>
+        </header>
+        
+        <div class="menu-grid">
+            <div class="recipe-card">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=200&fit=crop" alt="Vibrant Grilled Salmon Quinoa Bowl with fresh herbs">
+                <div class="recipe-info">
+                    <div class="recipe-title">Sustainably-Sourced Salmon Quinoa Bowl</div>
+                    <p class="recipe-description">**Baked** salmon with vibrant, fresh herbs and a medley of roasted vegetables.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 420 kcal</span> 
+                        <span>⏱️ 25 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>💪 High Protein</span>
+                        <span>🥕 Low Carb</span>
+                        <span>🐟 Gluten-Free</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://minimalistbaker.com/wp-content/uploads/2017/02/Lentil-Curry-Kale-Salad-SQUARE.jpg" alt="Rich, colorful Lentil and Vegetable Curry">
+                <div class="recipe-info">
+                    <div class="recipe-title">Hearty Lentil & Root Vegetable Curry</div>
+                    <p class="recipe-description">Slow-simmered, rich flavor from **locally-sourced** spices and coconut milk.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 350 kcal</span>
+                        <span>⏱️ 45 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🌱 Vegan</span>
+                        <span>🌾 High Fiber</span>
+                        <span>🌶️ Anti-Inflammatory</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://static01.nyt.com/images/2024/07/09/multimedia/MK-Turkey-Meatloafrex-gfqc/MK-Turkey-Meatloafrex-gfqc-threeByTwoMediumAt2X.jpg" alt="Lean Turkey Meatloaf with side of Sweet Potatoes">
+                <div class="recipe-info">
+                    <div class="recipe-title">Lean Turkey Meatloaf with Roasted Potatoes</div>
+                    <p class="recipe-description">A comforting, **baked** classic using extra-lean ground turkey and fresh herbs.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 510 kcal</span>
+                        <span>⏱️ 60 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>💪 High Protein</span>
+                        <span>🥗 Low Fat</span>
+                        <span>🍠 Complex Carbs</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://images.getrecipekit.com/20230630210026-Blueberry-Banana-Oats-2000px.jpg?aspect_ratio=16:9&quality=90&" alt="Overnight Oats with berries and nuts">
+                <div class="recipe-info">
+                    <div class="recipe-title">Overnight Probiotic Berry Oats</div>
+                    <p class="recipe-description">Quick, no-cook breakfast packed with fiber and omega-3 seeds for gut health.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 310 kcal</span>
+                        <span>⏱️ 5 min prep</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🌱 Vegan</span>
+                        <span>🌾 High Fiber</span>
+                        <span>💡 Good for Gut</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recipe-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAUkXeSEAJ-s4J1jd6khuGSnpO6eRBsiMc3g&sp" alt="Vibrant Chicken and Vegetable Stir-fry">
+                <div class="recipe-info">
+                    <div class="recipe-title">Ginger-Sesame Chicken Stir-fry</div>
+                    <p class="recipe-description">Lean chicken breast and fresh, crunchy vegetables **wok-tossed** in a light sauce.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 450 kcal</span>
+                        <span>⏱️ 20 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>💪 High Protein</span>
+                        <span>🥦 Paleo Friendly</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://leaf.nutrisystem.com/wp-content/uploads/2017/12/7.jpg" alt="Healthy egg white breakfast burrito">
+                <div class="recipe-info">
+                    <div class="recipe-title">Egg White Scramble Burrito</div>
+                    <p class="recipe-description">A delicious breakfast option with spinach, bell peppers, and low-fat cheese.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 300 kcal</span>
+                        <span>⏱️ 15 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>💪 High Protein</span>
+                        <span>🧀 Low Fat</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://www.sunglowkitchen.com/wp-content/uploads/2023/03/tofu-buddha-bowls-peanut-sauce-8-1-480x270.jpg" alt="Spicy peanut tofu bowl with rice">
+                <div class="recipe-info">
+                    <div class="recipe-title">Spicy Peanut Tofu Buddha Bowl</div>
+                    <p class="recipe-description">Crispy **air-fried** tofu on a bed of brown rice and steamed greens. *Nut allergy warning*.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 520 kcal</span>
+                        <span>⏱️ 30 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🌱 Vegan</span>
+                        <span>💪 High Protein</span>
+                        <span>🍚 Whole Grain</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://thespiceway.com/cdn/shop/files/Grilled_Lemon_Pepper_Shrimp_Skewers.jpg?v=1724776766" alt="Grilled lemon herb shrimp skewers">
+                <div class="recipe-info">
+                    <div class="recipe-title">Lemon Herb Grilled Shrimp Skewers</div>
+                    <p class="recipe-description">Quick, light, and refreshing **grilled** shrimp marinated in zesty lemon and oregano.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 280 kcal</span>
+                        <span>⏱️ 15 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🥕 Low Carb</span>
+                        <span>💪 High Protein</span>
+                        <span>🌊 Keto Friendly</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recipe-card">
+                <img src="https://thebusybaker.ca/wp-content/uploads/2018/10/butternut-squash-soup-fb-ig3.jpg" alt="Creamy Butternut Squash Soup">
+                <div class="recipe-info">
+                    <div class="recipe-title">Creamy Butternut Squash Soup (Dairy-Free)</div>
+                    <p class="recipe-description">Warm and comforting soup blended with coconut milk and **organic** herbs.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 210 kcal</span>
+                        <span>⏱️ 40 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🌱 Vegan</span>
+                        <span>🥣 Low Calorie</span>
+                        <span>🌾 High Fiber</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://minimalistbaker.com/wp-content/uploads/2017/12/DELICIOUS-Vegan-Gluten-Free-Cauliflower-Pizza-Crust-10-ingredients-simple-methods-crispy-crust-tender-center-vegan-glutenfree-plantbased-pizza-cauliflower-minimalistbaker-recipe6.jpg" alt="Healthy cauliflower crust pizza">
+                <div class="recipe-info">
+                    <div class="recipe-title">Cauliflower Crust Veggie Pizza</div>
+                    <p class="recipe-description">A tasty, crisp alternative to regular pizza, loaded with fresh, **seasonal** vegetables.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 390 kcal</span>
+                        <span>⏱️ 25 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🥕 Low Carb</span>
+                        <span>🐟 Gluten-Free</span>
+                        <span>🧀 Vegetarian</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://spicecravings.com/wp-content/uploads/2023/09/Greek-Yogurt-Parfait-Featured.jpg" alt="Greek yogurt parfait with berries and granola">
+                <div class="recipe-info">
+                    <div class="recipe-title">High-Protein Greek Yogurt Parfait</div>
+                    <p class="recipe-description">Layered with **low-sugar** granola, fresh berries, and a touch of local honey.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 260 kcal</span>
+                        <span>⏱️ 5 min prep</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>💪 High Protein</span>
+                        <span>🥣 Low Sugar</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recipe-card">
+                <img src="https://kalynskitchen.com/wp-content/uploads/2012/02/1200-Black-Bean-Beef-Chili-kalynskitchen.jpg" alt="Lean ground beef chili with beans">
+                <div class="recipe-info">
+                    <div class="recipe-title">Lean Beef and Black Bean Chili</div>
+                    <p class="recipe-description">Slow-cooked chili using extra-lean ground beef and antioxidant-rich black beans.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 480 kcal</span>
+                        <span>⏱️ 90 min</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>💪 High Protein</span>
+                        <span>🌾 High Fiber</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://realandvibrant.com/wp-content/uploads/2018/12/Mediterranean-Quinoa-Salad.jpg" alt="Vibrant Mediterranean Quinoa Salad">
+                <div class="recipe-info">
+                    <div class="recipe-title">Vibrant Mediterranean Quinoa Salad</div>
+                    <p class="recipe-description">A refreshing mix of quinoa, cucumber, feta, and kalamata olives with a light dressing.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 330 kcal</span>
+                        <span>⏱️ 10 min prep</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🧀 Vegetarian</span>
+                        <span>💡 Heart Healthy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="recipe-card">
+                <img src="https://cdn.shopify.com/s/files/1/0804/0808/4768/files/Black_White_Modern_Handwritten_Square_Studio_Logo_2_480x480.png?v=1704461767" alt="Green detox smoothie with banana and kale">
+                <div class="recipe-info">
+                    <div class="recipe-title">Energizing Green Power Smoothie</div>
+                    <p class="recipe-description">Blended with spinach, banana, and protein powder—perfect for a post-workout boost.</p>
+                    <div class="recipe-meta">
+                        <span>🔥 290 kcal</span>
+                        <span>⏱️ 5 min prep</span>
+                    </div>
+                    <div class="macro-tags">
+                        <span>🌱 Vegan Option</span>
+                        <span>💪 High Protein</span>
+                        <span>💡 Detox</span>
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="recipe-card">
+            <img src="https://inquiringchef.com/wp-content/uploads/2016/10/20-Minute-Chicken-Ramen-Stirfry.jpg" alt="A steaming bowl of chicken ramen with soft-boiled egg and vegetables">
+            <div class="recipe-info">
+                <div class="recipe-title">Quick Chicken Ramen Bowl</div>
+                <p class="recipe-description">A flavorful broth with tender chicken, noodles, and a soft-boiled egg. Comfort food ready in minutes.</p>
+                <div class="recipe-meta">
+                    <span>🔥 410 kcal</span>
+                    <span>⏱️ 20 min total</span>
+                </div>
+                <div class="macro-tags">
+                    <span>🍲 Comfort Food</span>
+                    <span>🌶️ Spice Adjustable</span>
+                    <span>🐓 Poultry</span>
+                </div>
+            </div>
+        </div>
+        
+
+        <div class="recipe-card">
+    <img src="https://www.shelovesbiscotti.com/wp-content/uploads/2020/08/Mediterranean-Roasted-Vegetables.jpg" alt="Close-up of roasted bell peppers, zucchini, and cherry tomatoes">
+    <div class="recipe-info">
+        <div class="recipe-title">Roasted Mediterranean Vegetables</div>
+        <p class="recipe-description">A simple, healthy side dish of zucchini, bell peppers, and onion tossed with olive oil and Italian herbs.</p>
+        <div class="recipe-meta">
+            <span>🔥 150 kcal</span>
+            <span>⏱️ 35 min total</span>
+        </div>
+        <div class="macro-tags">
+            <span>🥗 Side Dish</span>
+            <span>🌱 Vegetarian</span>
+            <span>☀️ Low Carb</span>
+        </div>
+    </div>
+</div>
+            </div>
+
+        <section class="promotion-cta" style="margin-top: 40px; padding: 20px; background-color: #f7f9fa; border-radius: 10px; border-left: 5px solid #2ecc71;">
+            <h3>✨ Customize Your Meal Plan!</h3>
+            <p>Don't see what you need? Use our **online ordering tool** to easily customize any recipe—swap a side, add plant-based protein, or adjust portions to meet your exact dietary needs.</p>
+            <button style="padding: 10px 20px; background-color: #e67e22; color: white; border: none; border-radius: 5px; margin-top: 10px; cursor: pointer;">Start Customizing Now</button>
+        </section>
+
+    </main>
+</body>
+</html>

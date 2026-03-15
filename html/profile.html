@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - User Profile & Daily Log</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        /* General Layout Integration */
+        body {
+            display: flex;
+            margin: 0;
+            background-color: #f4f7f6;
+        }
+        
+        .main-content {
+            flex-grow: 1;
+            padding: 20px 40px;
+        }
+        
+        .page-container {
+            max-width: 1000px; /* Increased max width for two columns */
+            margin: 20px auto;
+            padding: 30px;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        /* Main Grid Layout for Forms */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        /* Responsive Breakpoint for two columns */
+        @media (min-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* Form Section Styling */
+        .form-section {
+            padding: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            background-color: #fafafa;
+        }
+        
+        .form-section h2 {
+            color: #3498db;
+            margin-top: 0;
+            border-bottom: 3px solid #3498db; /* Thicker, bolder line */
+            padding-bottom: 12px;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .form-section label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600; /* Slightly bolder font */
+            color: #444;
+            font-size: 0.95em;
+        }
+        
+        .form-section input, .form-section select {
+            width: 100%;
+            padding: 12px; /* Increased padding */
+            margin-top: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Slightly more rounded corners */
+            box-sizing: border-box;
+            background-color: white;
+            transition: border-color 0.2s;
+        }
+        
+        .form-section input:focus, .form-section select:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        /* Button Styling */
+        .form-section button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 12px 20px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .form-section button:hover {
+            background-color: #27ae60;
+            transform: translateY(-1px);
+        }
+        
+        /* Output and Log Styles */
+        #tdee-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e8f9f1;
+            border: 1px solid #2ecc71;
+            border-left: 5px solid #2ecc71;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #2c3e50;
+            display: none;
+        }
+        
+        #daily-log-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        #daily-log-list li {
+            background: #eaf3fb; /* Light blue background for log items */
+            padding: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid #3498db;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            font-size: 0.95em;
+        }
+
+        #daily-log-list li strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🍊</span>
+            <span class="logo-text">Nutrigo</span>
+        </div>
+        <nav class="nav-menu">
+            <a href="new.html" class="nav-item">
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="profile.html" class="nav-item active">
+                <span class="icon">👤</span>
+                <span>Profile</span>
+            </a>
+            <a href="calendar.html" class="nav-item">
+                <span class="icon">📅</span>
+                <span>Calendar</span>
+            </a>
+            <a href="messages.html" class="nav-item">
+                <span class="icon">💬</span>
+                <span>Messages</span>
+                <span class="badge">8</span>
+            </a>
+            <a href="heldiymenue.html" class="nav-item">
+                <span class="icon">🍽️</span>
+                <span>Healthy Menu</span>
+            </a>
+            <a href="mealplane.html" class="nav-item">
+                <span class="icon">📋</span>
+                <span>Meal Plan</span>
+            </a>
+            <a href="fooddilevry.html" class="nav-item">
+                <span class="icon">📖</span>
+                <span>Food Diary</span>
+            </a>
+            <a href="prossestreking.html" class="nav-item">
+                <span class="icon">📈</span>
+                <span>Progress</span>
+            </a>
+            <a href="Exercises.html" class="nav-item">
+                <span class="icon">💪</span>
+                <span>Exercises</span>
+            </a>
+            <a href="health.html" class="nav-item">
+                <span class="icon">💡</span>
+                <span>Health Insights</span>
+            </a>
+        </nav>
+        <button class="logout-btn">
+            <span class="icon">🚪</span>
+            <span>Logout</span>
+        </button>
+    </aside>
+
+    <main class="main-content">
+        <header class="header">
+            <div class="header-left">
+                <h1>👤 User Profile & Metrics</h1>
+                <p>Manage your core health data and track new meals.</p>
+            </div>
+        </header>
+
+        <div class="page-container">
+            
+            <div class="form-grid">
+                <!-- COLUMN 1: PROFILE SETUP -->
+                <section class="form-section">
+                    <h2>Health Profile Setup</h2>
+                    <form id="profile-form">
+                        <label for="weight">Weight (kg):</label>
+                        <input type="number" id="weight" required value="70"><br>
+
+                        <label for="height">Height (cm):</label>
+                        <input type="number" id="height" required value="170"><br>
+
+                        <label for="age">Age:</label>
+                        <input type="number" id="age" required value="25"><br>
+
+                        <label for="gender">Gender:</label>
+                        <select id="gender" required>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select><br>
+
+                        <label for="activity">Activity Level (for TDEE):</label>
+                        <select id="activity" required>
+                            <option value="sedentary">Sedentary (Little/no exercise)</option>
+                            <option value="light">Lightly Active (1-3 days/week)</option>
+                            <option value="moderate">Moderately Active (3-5 days/week)</option>
+                            <option value="very">Very Active (6-7 days/week)</option>
+                        </select><br>
+
+                        <button type="submit">Save Profile & Calculate TDEE</button>
+                    </form>
+                    <div id="tdee-output"></div>
+                </section>
+                
+                <!-- COLUMN 2: DAILY FOOD LOG -->
+                <section class="form-section">
+                    <h2>Daily Food Log</h2>
+                    <form id="log-form">
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" required><br>
+                        
+                        <label for="meal-name">Meal Name:</label>
+                        <select id="meal-name" required>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                            <option value="Snack">Snack</option>
+                        </select><br>
+
+                        <label for="food-id">Food Name/ID:</label>
+                        <input type="text" id="food-id" placeholder="e.g., Apple, 100g Chicken Breast" required><br>
+
+                        <label for="quantity">Quantity/Serving Size:</label>
+                        <input type="text" id="quantity" placeholder="e.g., 1 medium, 200g" required><br>
+                        
+                        <button type="submit">Log Food Entry</button>
+                    </form>
+                    
+                    <h3>Recent Logged Items:</h3>
+                    <ul id="daily-log-list">
+                        <!-- Logged items will be inserted here -->
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Linking to the logic script -->
+    <script src="/javascript/profile.js"></script>
+</body>
+</html>

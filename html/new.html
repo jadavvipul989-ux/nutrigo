@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nutrigo - Health Dashboard</title>
+    <link rel="stylesheet" href="/css/new.css">
+    <style>
+        /* CSS to make the entire card clickable */
+        .stat-card a, .card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            height: 100%;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+
+        /* Hover effect applied directly to the anchor wrapper */
+        .stat-card:hover, .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+        }
+
+        /* Existing Styles for Cards (Minimal necessary recreation here; assumes new.css holds bulk) */
+        .stat-card, .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); 
+            margin-bottom: 20px;
+            position: relative; /* Needed for hover effects */
+        }
+        .stats-grid, .dashboard-grid {
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .dashboard-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        /* Fix for elements inside clickable area */
+        .icon-btn {
+            z-index: 10; /* Ensures buttons inside the card remain usable */
+            position: relative;
+        }
+                .no-underline {
+        text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+                <aside class="sidebar">
+                <div class="logo">
+                <img src="/logo/logo.png" alt="Nutrigo Logo" class="logo-img"> 
+                <span class="logo-text">Nutrigo</span>
+            </div>
+        <nav class="nav-menu">
+            <!-- UPDATED PROFILE LINK -->
+            <a href="profile.html" class="nav-item">
+                <span class="icon">👤</span>
+                <span>Profile</span>
+            </a>
+            <a href="new.html" class="nav-item active">
+                <span class="icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="calendar.html" class="nav-item">
+                <span class="icon">📅</span>
+                <span>Calendar</span>
+            </a>
+            <a href="messages.html" class="nav-item">
+                <span class="icon">💬</span>
+                <span>Messages</span>
+                <span class="badge">8</span>
+            </a>
+            <a href="heldiymenue.html" class="nav-item">
+                <span class="icon">🍽️</span>
+                <span>Healthy Menu</span>
+            </a>
+            <a href="mealplane.html" class="nav-item">
+                <span class="icon">📋</span>
+                <span>Meal Plan</span>
+            </a>
+            <a href="fooddilevry.html" class="nav-item">
+                <span class="icon">📖</span>
+                <span>Food Diary</span>
+            </a>
+            <a href="prossestreking.html" class="nav-item">
+                <span class="icon">📈</span>
+                <span>Progress</span>
+            </a>
+            <a href="Nutrigo - Exercises.html" class="nav-item">
+                <span class="icon">💪</span>
+                <span>Exercises</span>
+            </a>
+            <a href="health.html" class="nav-item">
+                <span class="icon">💡</span>
+                <span>Health Insights</span>
+            </a>
+        </nav>
+        <button class="logout-btn">
+            <span class="icon">🚪</span>
+            <span>Logout</span>
+        </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+                            <div class="greeting-area">
+                    <h1>Hello, User!</h1>
+                    <p>let's begin our journey to better health today</p>
+                </div>
+                            <div class="header-right">
+                    <div class="search-box">
+                        <input type="text" placeholder="Search anything">
+                    </div>
+                    <a href="login.html" class="login-btn">Log In</a>
+                    <a href="massage.html" class="no-underline">🔔</a>
+                <!--  <button class="notification-btn">🔔</button>-->
+                </div>
+        </header>
+
+        <!-- Stats Cards (Clickable to Profile Page) -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <a href="profile.html" class="card-link">
+                    <div class="stat-header">
+                        <span>Weight</span>
+                        <button class="icon-btn">😊</button>
+                    </div>
+                    <div class="stat-value">78<span class="unit">kg</span></div>
+                    <div class="stat-chart">
+                        <div class="mini-chart"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="stat-card">
+                <a href="profile.html" class="card-link">
+                    <div class="stat-header">
+                        <span>Steps</span>
+                        <button class="icon-btn">😊</button>
+                    </div>
+                    <div class="stat-value">8050<span class="unit">steps</span></div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 76%"></div>
+                    </div>
+                    <div class="stat-info">76% <span class="muted">1650 steps left</span></div>
+                </a>
+            </div>
+            <div class="stat-card">
+                <a href="profile.html" class="card-link">
+                    <div class="stat-header">
+                        <span>Sleep</span>
+                        <button class="icon-btn">😊</button>
+                    </div>
+                    <div class="stat-value">8.5<span class="unit">hrs</span></div>
+                    <div class="sleep-chart">
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                        <div class="bar"></div>
+                    </div>
+                </a>
+            </div>
+            <div class="stat-card">
+                <a href="profile.html" class="card-link">
+                    <div class="stat-header">
+                        <span>Water Intake</span>
+                        <button class="icon-btn">😊</button>
+                    </div>
+                    <div class="water-display">
+                        <div class="water-value">0.7<span class="unit">litre left</span></div>
+                        <div class="water-progress">1.3/2 litre</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Dashboard Grid (Clickable to Profile Page) -->
+        <div class="dashboard-grid">
+            
+            <!-- Weight Data -->
+            <div class="card weight-card">
+                <a href="profile.html" class="card-link">
+                    <div class="card-header">
+                        <h3>Weight Data</h3>
+                        <button class="icon-btn">⋯</button>
+                    </div>
+                    <div class="weight-donut">
+                        <svg viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#FFE5CC" stroke-width="30"/>
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#FF9F43" stroke-width="30" 
+                                    stroke-dasharray="376.99" stroke-dashoffset="94.25" transform="rotate(-90 100 100)"/>
+                        </svg>
+                        <div class="weight-center">
+                            <div class="weight-value">78<span>kg</span></div>
+                            <div class="weight-label">Current Weight</div>
+                        </div>
+                    </div>
+                    <div class="weight-range">
+                        <span>85</span>
+                        <span>13 kg left</span>
+                        <span>65</span>
+                    </div>
+                    <p class="weight-message">Progress in progress no matter how slow. Keep going, you're getting closer to your goal every day!</p>
+                </a>
+            </div>
+
+            <!-- Calories Intake -->
+            <div class="card calories-card">
+                <a href="profile.html" class="card-link">
+                    <div class="card-header">
+                        <h3>Calories Intake</h3>
+                        <button class="icon-btn">⋯</button>
+                    </div>
+                    <div class="calories-summary">
+                        <div class="calories-item">
+                            <span class="icon">🥗</span>
+                            <div>
+                                <div class="calories-number">1750 kcal</div>
+                                <div class="calories-label-sm">Total Calories</div>
+                            </div>
+                        </div>
+                        <div class="calories-item">
+                            <span class="icon">🔥</span>
+                            <div>
+                                <div class="calories-number">510 kcal</div>
+                                <div class="calories-label-sm">Burned Calories</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="calories-donut">
+                        <svg viewBox="0 0 200 200">
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#FFE5CC" stroke-width="30"/>
+                            <circle cx="100" cy="100" r="80" fill="none" stroke="#FF9F43" stroke-width="30" 
+                                    stroke-dasharray="376.99" stroke-dashoffset="150" transform="rotate(-90 100 100)"/>
+                        </svg>
+                        <div class="calories-center">
+                            <div class="calories-value">1240<span>kcal</span></div>
+                            <div class="calories-label">Calories left</div>
+                        </div>
+                    </div>
+                    <div class="calories-breakdown">
+                        <div class="breakdown-item">
+                            <div class="breakdown-value">120<span>/Day</span></div>
+                            <div class="breakdown-label">Carbohydrates</div>
+                            <div class="breakdown-bar">
+                                <div class="breakdown-fill carbs"></div>
+                            </div>
+                            <div class="breakdown-percent">37%</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-value">70<span>/Day</span></div>
+                            <div class="breakdown-label">Protein</div>
+                            <div class="breakdown-bar">
+                                <div class="breakdown-fill protein"></div>
+                            </div>
+                            <div class="breakdown-percent">93%</div>
+                        </div>
+                        <div class="breakdown-item">
+                            <div class="breakdown-value">20<span>/Day</span></div>
+                            <div class="breakdown-label">Fats</div>
+                            <div class="breakdown-bar">
+                                <div class="breakdown-fill fats"></div>
+                            </div>
+                            <div class="breakdown-percent">45%</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Calendar & Meals -->
+            <div class="card calendar-card">
+                <div class="calendar-header">
+                    <h3>September 2028</h3>
+                    <div class="calendar-nav">
+                        <button>‹</button>
+                        <button>›</button>
+                    </div>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day-label">Mon</div>
+                    <div class="calendar-day-label">Tue</div>
+                    <div class="calendar-day-label">Wed</div>
+                    <div class="calendar-day-label">Thu</div>
+                    <div class="calendar-day-label">Fri</div>
+                    <div class="calendar-day-label">Sat</div>
+                    <div class="calendar-day-label">Sun</div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day"></div>
+                    <div class="calendar-day">1</div>
+                    <div class="calendar-day">2</div>
+                    <div class="calendar-day">3</div>
+                    <div class="calendar-day">4</div>
+                    <div class="calendar-day active">5</div>
+                    <div class="calendar-day">6</div>
+                    <div class="calendar-day">7</div>
+                    <div class="calendar-day">8</div>
+                    <div class="calendar-day">9</div>
+                    <div class="calendar-day">10</div>
+                    <div class="calendar-day">11</div>
+                </div>
+
+                <div class="meal-list">
+                    <div class="meal-item">
+                        <img class="meal-image" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=100&h=100&fit=crop" alt="Breakfast">
+                        <div class="meal-info">
+                            <div class="meal-header">
+                                <span class="meal-badge breakfast">Breakfast</span>
+                                <span class="meal-calories">🔥 300 kcal</span>
+                            </div>
+                            <div class="meal-name">Scrambled Eggs with Spinach & Whole Grain Toast</div>
+                            <div class="meal-macros">
+                                <span>🍞 25g</span>
+                                <span>🥩 20g</span>
+                                <span>🥑 12g</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="meal-item">
+                        <img class="meal-image" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=100&h=100&fit=crop" alt="Lunch">
+                        <div class="meal-info">
+                            <div class="meal-header">
+                                <span class="meal-badge lunch">Lunch</span>
+                                <span class="meal-calories">🔥 450 kcal</span>
+                            </div>
+                            <div class="meal-name">Grilled Chicken Salad with Avocado and Quinoa</div>
+                            <div class="meal-macros">
+                                <span>🍞 40g</span>
+                                <span>🥩 35g</span>
+                                <span>🥑 20g</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="meal-item">
+                        <img class="meal-image" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=100&h=100&fit=crop" alt="Snack">
+                        <div class="meal-info">
+                            <div class="meal-header">
+                                <span class="meal-badge snack">Snack</span>
+                                <span class="meal-calories">🔥 200 kcal</span>
+                            </div>
+                            <div class="meal-name">Greek Yogurt with Mixed Berries and Almonds</div>
+                            <div class="meal-macros">
+                                <span>🍞 18g</span>
+                                <span>🥩 10g</span>
+                                <span>🥑 10g</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="meal-item">
+                        <img class="meal-image" src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=100&h=100&fit=crop" alt="Dinner">
+                        <div class="meal-info">
+                            <div class="meal-header">
+                                <span class="meal-badge dinner">Dinner</span>
+                                <span class="meal-calories">🔥 600 kcal</span>
+                            </div>
+                            <div class="meal-name">Grilled Chicken with Sweet Potato and Green Beans</div>
+                            <div class="meal-macros">
+                                <span>🍞 45g</span>
+                                <span>🥩 35g</span>
+                                <span>🥑 20g</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Workout Progress -->
+            <div class="card workout-card">
+                <div class="card-header">
+                    <h3>Workout Progress</h3>
+                    <button class="dropdown-btn">This Week ▾</button>
+                </div>
+                <div class="workout-grid">
+                    <div class="workout-item">
+                        <span class="workout-icon">🏃</span>
+                        <div class="workout-name">Running 10 km</div>
+                        <div class="workout-progress">75% <span>(h/s)</span></div>
+                        <span class="workout-type">Cardio</span>
+                    </div>
+                    <div class="workout-item">
+                        <span class="workout-icon">💪</span>
+                        <div class="workout-name">Squatting 50kg</div>
+                        <div class="workout-progress">60% <span>(s/s)</span></div>
+                        <span class="workout-type">Strength</span>
+                    </div>
+                    <div class="workout-item">
+                        <span class="workout-icon">🧘</span>
+                        <div class="workout-name">Stretching to touch toes</div>
+                        <div class="workout-progress">50% <span>(h/s)</span></div>
+                        <span class="workout-type">Flexibility</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recommended Menu -->
+            <div class="card recommended-menu">
+    <a href="heldiymenue.html" class="card-link">
+        <div class="card-header">
+            <h3>Recommended Menu</h3>
+            <button class="icon-btn">⋯</button>
+        </div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=300&h=200&fit=crop" alt="Breakfast">
+                <div class="menu-info">
+                    <span class="menu-badge breakfast">Breakfast</span>
+                    <span class="menu-calories">🔥 350 kcal</span>
+                </div>
+                <h4>Oatmeal with Almond Butter and Berries</h4>
+                <div class="menu-macros">
+                    <span>🍞 45g</span>
+                    <span>🥩 12g</span>
+                    <span>🥑 14g</span>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=300&h=200&fit=crop" alt="Lunch">
+                <div class="menu-info">
+                    <span class="menu-badge lunch">Lunch</span>
+                    <span class="menu-calories">🔥 450 kcal</span>
+                </div>
+                <h4>Grilled Chicken Wrap with Avocado and Spinach</h4>
+                <div class="menu-macros">
+                    <span>🍞 40g</span>
+                    <span>🥩 30g</span>
+                    <span>🥑 18g</span>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>
+            <!-- Recommended Exercises -->
+            <div class="card recommended-exercises">
+    <a href="Exercises.html" class="card-link">
+        <div class="card-header">
+            <h3>Recommended Exercises</h3>
+            <button class="icon-btn">⋯</button>
+        </div>
+        <div class="exercise-list">
+            <div class="exercise-item">
+                <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=80&h=80&fit=crop" alt="Brisk Walking">
+                <div class="exercise-info">
+                    <h4>Brisk Walking</h4>
+                    <div class="exercise-details">
+                        <span>🔥 200 kcal</span>
+                        <span>⏱️ 30 min</span>
+                    </div>
+                </div>
+                <span class="exercise-badge beginner">Beginner</span>
+            </div>
+            <div class="exercise-item">
+                <img src="https://images.unsplash.com/photo-1574680088814-4e894a0c3b04?w=80&h=80&fit=crop" alt="Bodyweight Squats">
+                <div class="exercise-info">
+                    <h4>Bodyweight Squats</h4>
+                    <div class="exercise-details">
+                        <span>🔥 185 kcal</span>
+                        <span>⏱️ 20 min</span>
+                    </div>
+                </div>
+                <span class="exercise-badge intermediate">Intermediate</span>
+            </div>
+            <div class="exercise-item">
+                <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=80&h=80&fit=crop" alt="Dumbbell Squat">
+                <div class="exercise-info">
+                    <h4>Dumbbell Squat</h4>
+                    <div class="exercise-details">
+                        <span>🔥 300 kcal</span>
+                        <span>⏱️ 30 min</span>
+                    </div>
+                </div>
+                <span class="exercise-badge hard">Hard</span>
+            </div>
+        </div>
+    </a>
+    </div>
+        <!-- Recent Activity -->
+        <div class="card recent-activity">
+            <div class="card-header">
+                <h3>Recent Activity</h3>
+                <button class="icon-btn">⋯</button>
+            </div>
+            <div class="activity-list">
+                <div class="activity-item">
+                    <div class="activity-icon">📧</div>
+                    <div class="activity-content">
+                        <div class="activity-text"><strong>Notification sent:</strong> "Congratulations! You've reached 76% of your cardio endurance goal!"</div>
+                        <div class="activity-time">5:42 PM</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🏃</div>
+                    <div class="activity-content">
+                        <div class="activity-text"><strong>Ladya Martinez</strong> completed her 3rd stretching session for flexibility improvement</div>
+                        <div class="activity-time">5:15 PM</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">📊</div>
+                    <div class="activity-content">
+                        <div class="activity-text"><strong>Cardio progress updated</strong> - 7.6 km completed so far for cardio endurance improvement</div>
+                        <div class="activity-time">3:01 PM</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon">🥗</div>
+                    <div class="activity-content">
+                        <div class="activity-text"><strong>Ladya Martinez</strong> logged her lunch meal: Grilled Chicken Wrap with Avocado and Spinach (450 kcal)</div>
+                        <div class="activity-time">12:45 PM</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Copyright © 2024 Peterdraw</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Term and conditions</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="social-links">
+                <a href="#">📘</a>
+                <a href="#">✖️</a>
+                <a href="#">📷</a>
+                <a href="#">▶️</a>
+                <a href="#">💼</a>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Note: Since we are using <a> tags for navigation, no external JS script is strictly necessary for the redirect. -->
+</body>
+</html>
