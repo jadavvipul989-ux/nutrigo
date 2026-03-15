@@ -1,0 +1,2 @@
+NutriGo | Full Stack Developer
+I built NutriGo to solve a common problem: most fitness apps feel too heavy and complicated for daily use. My goal was to create a fast, intuitive alternative that makes tracking nutrition and fitness goals feel effortless. By focusing on clean Vanilla JavaScript and a mobile-first design, I developed a tool that stays responsive and snappy on any device. I’m particularly proud of how I handled the real-time data visualization—making complex nutritional stats easy for anyone to understand at a glance.
